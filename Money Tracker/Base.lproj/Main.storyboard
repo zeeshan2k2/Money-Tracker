@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Money_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Transaction History BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="pkQ-vn-POJ">
+                                <rect key="frame" x="0.0" y="209" width="393" height="643"/>
+                                <color key="backgroundColor" cyan="0.53095769557823125" magenta="0.24471194727891157" yellow="0.51732568027210879" black="0.46434563758389263" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Transaction History BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="0gW-uh-n44">
+                                <rect key="frame" x="120" y="780" width="153" height="92"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="NTV-iv-X0i">
+                                <rect key="frame" x="129.66666666666669" y="792" width="133.66666666666669" height="42.666666666666629"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKw-PE-NGC">
+                                        <rect key="frame" x="0.0" y="0.0" width="60.333333333333336" height="42.666666666666664"/>
+                                        <color key="tintColor" cyan="0.53095769559999995" magenta="0.24471194730000001" yellow="0.51732568030000003" black="0.46434563760000003" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plus.square" catalog="system" title="">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="semibold"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-8g-DIb">
+                                        <rect key="frame" x="73.333333333333343" y="0.0" width="60.333333333333343" height="42.666666666666664"/>
+                                        <color key="tintColor" cyan="0.53095769559999995" magenta="0.24471194730000001" yellow="0.51732568030000003" black="0.46434563760000003" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="minus.square" catalog="system" title="">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="semibold"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ij8-8g-DIb" firstAttribute="leading" secondItem="ZKw-PE-NGC" secondAttribute="trailing" constant="12.999999999999993" id="m49-Wh-2BU"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1046 Rs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RET-YI-a94">
+                                <rect key="frame" x="55" y="123.66666666666667" width="283" height="51.333333333333329"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="43"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45L-tc-hd0">
+                                <rect key="frame" x="135.33333333333334" y="88.333333333333329" width="122.66666666666666" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0gW-uh-n44" secondAttribute="trailing" constant="120" id="1fx-xj-NVc"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="3GN-Ik-hRi"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="top" secondItem="RET-YI-a94" secondAttribute="bottom" constant="34" id="HCF-8a-BQX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RET-YI-a94" secondAttribute="trailing" constant="55" id="JLh-DS-ukB"/>
+                            <constraint firstAttribute="bottom" secondItem="0gW-uh-n44" secondAttribute="bottom" constant="-20" id="Jop-7v-BBL"/>
+                            <constraint firstItem="0gW-uh-n44" firstAttribute="top" secondItem="pkQ-vn-POJ" secondAttribute="bottom" constant="-72" id="LR2-A3-FzE"/>
+                            <constraint firstAttribute="bottom" secondItem="pkQ-vn-POJ" secondAttribute="bottom" id="Qj2-i5-2Ic"/>
+                            <constraint firstItem="RET-YI-a94" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="Smu-Gk-C3q"/>
+                            <constraint firstItem="RET-YI-a94" firstAttribute="top" secondItem="45L-tc-hd0" secondAttribute="bottom" constant="15" id="T5O-Z6-6yX"/>
+                            <constraint firstItem="NTV-iv-X0i" firstAttribute="top" secondItem="pkQ-vn-POJ" secondAttribute="bottom" constant="-60" id="X88-3P-qSM"/>
+                            <constraint firstItem="NTV-iv-X0i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eCG-gw-ogw"/>
+                            <constraint firstItem="0gW-uh-n44" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="h8z-RN-JOd"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mD6-hq-7Cw"/>
+                            <constraint firstItem="45L-tc-hd0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="px3-99-CJA"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="saG-7P-BDE"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sgR-JX-WEL"/>
+                            <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tmr-TR-Nh6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="StackViewBGImage" destination="pkQ-vn-POJ" id="RDE-wS-SqX"/>
+                        <outlet property="currentBalance" destination="RET-YI-a94" id="q0g-g1-D3P"/>
+                        <outlet property="moneyAddAndSpentBGImage" destination="0gW-uh-n44" id="7ka-eV-rYA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115.26717557251908" y="2.8169014084507045"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Transaction History BG.png" width="300" height="293"/>
+        <image name="minus.square" catalog="system" width="128" height="114"/>
+        <image name="plus.square" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
