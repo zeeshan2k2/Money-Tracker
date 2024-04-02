@@ -21,6 +21,52 @@
                                 <rect key="frame" x="0.0" y="209" width="393" height="643"/>
                                 <color key="backgroundColor" cyan="0.53095769557823125" magenta="0.24471194727891157" yellow="0.51732568027210879" black="0.46434563758389263" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-ff-qBu">
+                                <rect key="frame" x="0.0" y="210" width="393" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="Fgx-To-qgg">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fgx-To-qgg" id="suG-gL-z4j">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 250 Rs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9k-BJ-VKD">
+                                                    <rect key="frame" x="19.999999999999993" y="25" width="98.333333333333314" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCE-qj-ppV">
+                                                    <rect key="frame" x="332.33333333333331" y="35" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-6-2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIm-pF-gnO">
+                                                    <rect key="frame" x="253.33333333333334" y="30" width="79.666666666666657" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="UCE-qj-ppV" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="35" id="0Bk-o0-O8a"/>
+                                                <constraint firstAttribute="trailing" secondItem="wIm-pF-gnO" secondAttribute="trailing" constant="20" symbolic="YES" id="ItB-zP-xH8"/>
+                                                <constraint firstItem="wIm-pF-gnO" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="30" id="JfZ-jc-wJM"/>
+                                                <constraint firstItem="l9k-BJ-VKD" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="25" id="KoJ-61-z6b"/>
+                                                <constraint firstAttribute="trailing" secondItem="UCE-qj-ppV" secondAttribute="trailing" constant="20.666666666666742" id="aIz-AO-Q5r"/>
+                                                <constraint firstItem="l9k-BJ-VKD" firstAttribute="leading" secondItem="suG-gL-z4j" secondAttribute="leading" constant="20" id="xI2-z6-LJF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
+                                        <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Transaction History BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="0gW-uh-n44">
                                 <rect key="frame" x="120" y="780" width="153" height="92"/>
                             </imageView>
@@ -71,6 +117,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RET-YI-a94" secondAttribute="trailing" constant="55" id="JLh-DS-ukB"/>
                             <constraint firstAttribute="bottom" secondItem="0gW-uh-n44" secondAttribute="bottom" constant="-20" id="Jop-7v-BBL"/>
                             <constraint firstItem="0gW-uh-n44" firstAttribute="top" secondItem="pkQ-vn-POJ" secondAttribute="bottom" constant="-72" id="LR2-A3-FzE"/>
+                            <constraint firstItem="IMP-ff-qBu" firstAttribute="top" secondItem="RET-YI-a94" secondAttribute="bottom" constant="35" id="PJM-0N-xsY"/>
                             <constraint firstAttribute="bottom" secondItem="pkQ-vn-POJ" secondAttribute="bottom" id="Qj2-i5-2Ic"/>
                             <constraint firstItem="RET-YI-a94" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="Smu-Gk-C3q"/>
                             <constraint firstItem="RET-YI-a94" firstAttribute="top" secondItem="45L-tc-hd0" secondAttribute="bottom" constant="15" id="T5O-Z6-6yX"/>
@@ -80,14 +127,19 @@
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mD6-hq-7Cw"/>
                             <constraint firstItem="45L-tc-hd0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="px3-99-CJA"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="saG-7P-BDE"/>
+                            <constraint firstAttribute="bottom" secondItem="IMP-ff-qBu" secondAttribute="bottom" id="seF-0C-QE5"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sgR-JX-WEL"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tmr-TR-Nh6"/>
+                            <constraint firstItem="IMP-ff-qBu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uNM-Br-aN3"/>
+                            <constraint firstAttribute="bottom" secondItem="IMP-ff-qBu" secondAttribute="bottom" constant="-5" id="xc7-k5-1x6"/>
+                            <constraint firstAttribute="trailing" secondItem="IMP-ff-qBu" secondAttribute="trailing" id="ypl-4a-lJR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="StackViewBGImage" destination="pkQ-vn-POJ" id="RDE-wS-SqX"/>
                         <outlet property="currentBalance" destination="RET-YI-a94" id="q0g-g1-D3P"/>
                         <outlet property="moneyAddAndSpentBGImage" destination="0gW-uh-n44" id="7ka-eV-rYA"/>
+                        <outlet property="tableView" destination="IMP-ff-qBu" id="05C-rp-AHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,6 +151,9 @@
         <image name="Image" width="112" height="98"/>
         <image name="Image 1" width="112" height="98"/>
         <image name="Transaction History BG.png" width="300" height="293"/>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
