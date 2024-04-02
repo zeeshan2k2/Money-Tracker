@@ -15,6 +15,8 @@
 		C1C443E22BB6C95700A3C1DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C443E12BB6C95700A3C1DF /* Assets.xcassets */; };
 		C1C443E52BB6C95700A3C1DF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C1C443E42BB6C95700A3C1DF /* Base */; };
 		C1C443F92BB6E82500A3C1DF /* Grade Grey.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C443F82BB6E82500A3C1DF /* Grade Grey.png */; };
+		C1E4653B2BBB91D60088B2A5 /* money-send.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E465392BBB91D60088B2A5 /* money-send.png */; };
+		C1E4653C2BBB91D60088B2A5 /* money-recive.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E4653A2BBB91D60088B2A5 /* money-recive.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		C1C443E42BB6C95700A3C1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C443E62BB6C95700A3C1DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1C443F82BB6E82500A3C1DF /* Grade Grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Grade Grey.png"; sourceTree = "<group>"; };
+		C1E465392BBB91D60088B2A5 /* money-send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-send.png"; sourceTree = "<group>"; };
+		C1E4653A2BBB91D60088B2A5 /* money-recive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-recive.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 		C1C443D72BB6C95600A3C1DF /* Money Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				C1E4653A2BBB91D60088B2A5 /* money-recive.png */,
+				C1E465392BBB91D60088B2A5 /* money-send.png */,
 				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
 				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
 				C1C443DC2BB6C95600A3C1DF /* ViewController.swift */,
@@ -135,7 +141,9 @@
 				C1C443E22BB6C95700A3C1DF /* Assets.xcassets in Resources */,
 				C1C443E52BB6C95700A3C1DF /* Base in Resources */,
 				C1C443E02BB6C95600A3C1DF /* Base in Resources */,
+				C1E4653B2BBB91D60088B2A5 /* money-send.png in Resources */,
 				C1C443F92BB6E82500A3C1DF /* Grade Grey.png in Resources */,
+				C1E4653C2BBB91D60088B2A5 /* money-recive.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
