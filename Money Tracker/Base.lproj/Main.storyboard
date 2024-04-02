@@ -25,53 +25,58 @@
                                 <rect key="frame" x="0.0" y="210" width="393" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="76" id="Fgx-To-qgg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="76" id="u0f-CC-1hy" customClass="MyTableViewCell" customModule="Money_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fgx-To-qgg" id="suG-gL-z4j">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u0f-CC-1hy" id="ewl-Xv-nei">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 250 Rs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9k-BJ-VKD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 250 Rs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzC-PL-ywY">
                                                     <rect key="frame" x="19.999999999999993" y="25" width="98.333333333333314" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCE-qj-ppV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYQ-bK-39h">
                                                     <rect key="frame" x="332.33333333333331" y="35" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-6-2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIm-pF-gnO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-6-2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zel-ru-40h">
                                                     <rect key="frame" x="253.33333333333334" y="30" width="79.666666666666657" height="19.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money-recive.png" translatesAutoresizingMaskIntoConstraints="NO" id="MWW-k4-kMJ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money-recive.png" translatesAutoresizingMaskIntoConstraints="NO" id="0WU-J2-1Un">
                                                     <rect key="frame" x="133" y="22" width="33" height="33"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="33" id="FfS-rE-KRJ"/>
-                                                        <constraint firstAttribute="height" constant="33" id="PVh-nt-pBF"/>
+                                                        <constraint firstAttribute="height" constant="33" id="L3o-2w-DnY"/>
+                                                        <constraint firstAttribute="width" constant="33" id="j7j-lK-SfM"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="UCE-qj-ppV" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="35" id="0Bk-o0-O8a"/>
-                                                <constraint firstItem="MWW-k4-kMJ" firstAttribute="leading" secondItem="l9k-BJ-VKD" secondAttribute="trailing" constant="14.666666666666686" id="24e-OS-MXg"/>
-                                                <constraint firstAttribute="trailing" secondItem="wIm-pF-gnO" secondAttribute="trailing" constant="20" symbolic="YES" id="ItB-zP-xH8"/>
-                                                <constraint firstItem="wIm-pF-gnO" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="30" id="JfZ-jc-wJM"/>
-                                                <constraint firstItem="l9k-BJ-VKD" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="25" id="KoJ-61-z6b"/>
-                                                <constraint firstAttribute="trailing" secondItem="UCE-qj-ppV" secondAttribute="trailing" constant="20.666666666666742" id="aIz-AO-Q5r"/>
-                                                <constraint firstItem="MWW-k4-kMJ" firstAttribute="top" secondItem="suG-gL-z4j" secondAttribute="top" constant="22" id="kgY-aP-ecT"/>
-                                                <constraint firstItem="l9k-BJ-VKD" firstAttribute="leading" secondItem="suG-gL-z4j" secondAttribute="leading" constant="20" id="xI2-z6-LJF"/>
+                                                <constraint firstItem="kzC-PL-ywY" firstAttribute="leading" secondItem="ewl-Xv-nei" secondAttribute="leading" constant="20" id="5v4-n8-eiP"/>
+                                                <constraint firstItem="kzC-PL-ywY" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="25" id="8Nt-bX-fX2"/>
+                                                <constraint firstAttribute="trailing" secondItem="zel-ru-40h" secondAttribute="trailing" constant="20" symbolic="YES" id="HRl-uy-b23"/>
+                                                <constraint firstItem="0WU-J2-1Un" firstAttribute="leading" secondItem="kzC-PL-ywY" secondAttribute="trailing" constant="14.666666666666686" id="Qr8-M3-BbV"/>
+                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="30" id="UBo-rY-7aQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="tYQ-bK-39h" secondAttribute="trailing" constant="20.666666666666742" id="gJp-KO-egV"/>
+                                                <constraint firstItem="0WU-J2-1Un" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="22" id="gl9-xP-RnW"/>
+                                                <constraint firstItem="tYQ-bK-39h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="35" id="zD3-Yg-2rM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                         <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                        <connections>
+                                            <outlet property="amountData" destination="kzC-PL-ywY" id="orT-v2-9ga"/>
+                                            <outlet property="dateData" destination="zel-ru-40h" id="T2f-jg-FoG"/>
+                                            <outlet property="transactionStatusImage" destination="0WU-J2-1Un" id="HiB-mC-Obo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -111,6 +116,9 @@
                                         <color key="tintColor" cyan="0.53095769559999995" magenta="0.24471194730000001" yellow="0.51732568030000003" black="0.46434563760000003" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="" backgroundImage="Image"/>
+                                        <connections>
+                                            <action selector="addMoney:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8em-Mf-fTw"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="❘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGm-0D-xGl">
                                         <rect key="frame" x="61" y="0.0" width="3.6666666666666714" height="36"/>
@@ -126,6 +134,9 @@
                                         <color key="tintColor" cyan="0.53095769559999995" magenta="0.24471194730000001" yellow="0.51732568030000003" black="0.46434563760000003" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="" backgroundImage="Image 1"/>
+                                        <connections>
+                                            <action selector="spentMoney:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L3F-d7-K9j"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -165,7 +176,7 @@
                         <outlet property="StackViewBGImage" destination="pkQ-vn-POJ" id="RDE-wS-SqX"/>
                         <outlet property="currentBalance" destination="RET-YI-a94" id="q0g-g1-D3P"/>
                         <outlet property="moneyAddAndSpentBGImage" destination="0gW-uh-n44" id="7ka-eV-rYA"/>
-                        <outlet property="tableView" destination="IMP-ff-qBu" id="05C-rp-AHb"/>
+                        <outlet property="tableView" destination="IMP-ff-qBu" id="T9l-3u-x3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -179,7 +190,7 @@
         <image name="Transaction History BG.png" width="300" height="293"/>
         <image name="money-recive.png" width="75" height="75"/>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

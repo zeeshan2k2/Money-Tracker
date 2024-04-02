@@ -11,10 +11,6 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
-    
-
-        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,16 +22,41 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         self.tableView.backgroundView = imageView
         tableView.layer.cornerRadius = 48
+        
+        
+//        let transOne = cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send")
+//        transactionList.append(cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send"))
+
+    }
+    
+    
+    var transactionList = [cellData]()
+    
+    
+    @IBAction func addMoney(_ sender: Any) {
+        print("add money")
+        transactionList.append(cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send"))
+        tableView.reloadData()
+    }
+    
+    @IBAction func spentMoney(_ sender: Any) {
+        print("spent money")
     }
     
 
-    var arrSample = ["200", "300", "200", "400", "500", "700"]
     
     @IBOutlet var currentBalance: UILabel!
     
     @IBOutlet var StackViewBGImage: UIImageView!
 
     @IBOutlet var moneyAddAndSpentBGImage: UIImageView!
+    
+    
+
+    var moneySpentOrAddedArray: [String] = []
+
+ 
+    var dateOfTransactionArray: [String] = []
     
     func applyBorderRadius() {
         StackViewBGImage.layer.cornerRadius = 55
@@ -51,13 +72,14 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController: UITableViewDelegate {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped me")
+        print(moneySpentOrAddedArray, dateOfTransactionArray)
     }
-}
-
-extension ViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -67,15 +89,17 @@ extension ViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return arrSample.count
+        return transactionList.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = arrSample[indexPath.section]
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyTableViewCell
+        cell.amountData.text = "\(transactionList[indexPath.row].amount)"
+        cell.dateData.text = "\(transactionList[indexPath.row].date)"
+        cell.transactionStatusImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
         return cell
     }
     
 }
+

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C11C3D382BB6EAB70010E8A3 /* Transaction History BG.png in Resources */ = {isa = PBXBuildFile; fileRef = C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */; };
+		C167E0662BBCB00200065336 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0652BBCB00200065336 /* CellData.swift */; };
+		C167E0682BBCB19300065336 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0672BBCB19300065336 /* MyTableViewCell.swift */; };
 		C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */; };
 		C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */; };
 		C1C443DD2BB6C95600A3C1DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443DC2BB6C95600A3C1DF /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Transaction History BG.png"; sourceTree = "<group>"; };
+		C167E0652BBCB00200065336 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		C167E0672BBCB19300065336 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		C1C443D52BB6C95600A3C1DF /* Money Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 				C1E465392BBB91D60088B2A5 /* money-send.png */,
 				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
 				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
+				C167E0652BBCB00200065336 /* CellData.swift */,
+				C167E0672BBCB19300065336 /* MyTableViewCell.swift */,
 				C1C443DC2BB6C95600A3C1DF /* ViewController.swift */,
 				C1C443DE2BB6C95600A3C1DF /* Main.storyboard */,
 				C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */,
@@ -157,6 +163,8 @@
 				C1C443DD2BB6C95600A3C1DF /* ViewController.swift in Sources */,
 				C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */,
 				C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */,
+				C167E0682BBCB19300065336 /* MyTableViewCell.swift in Sources */,
+				C167E0662BBCB00200065336 /* CellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
