@@ -7,7 +7,23 @@
 
 import UIKit
 
+var arr1 = [3, 4, 3, 3]
+
 class ViewController: UIViewController {
+    
+    @IBOutlet var tableView: UITableView!
+    
+    var transactionList = [cellData]()
+    
+    @IBOutlet var currentBalance: UILabel!
+    
+    @IBOutlet var StackViewBGImage: UIImageView!
+
+    @IBOutlet var moneyAddAndSpentBGImage: UIImageView!
+
+    var moneySpentOrAddedArray: [String] = []
+
+    var dateOfTransactionArray: [String] = []
     
     
     override func viewDidLoad() {
@@ -17,46 +33,49 @@ class ViewController: UIViewController {
         
         applyBorderRadius()
         
+////       to reverse cell addition in TableView
+//        tableView.transform  = CGAffineTransform(scaleX: 1, y: -1)
+        
         let backgroundImage = UIImage(named: "Transaction History BG")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFill
         self.tableView.backgroundView = imageView
         tableView.layer.cornerRadius = 48
         
-        
-//        let transOne = cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send")
-//        transactionList.append(cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send"))
-
     }
     
     
-    var transactionList = [cellData]()
     
+    func addTransaction(_ transaction: cellData) {
+            transactionList.append(transaction)
+    }
     
     @IBAction func addMoney(_ sender: Any) {
-        print("add money")
-        transactionList.append(cellData(amount: "+ 345 Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send"))
-        tableView.reloadData()
+        let lastIndex = transactionList.count
+        let transOne = cellData(amount: "+ \(Int.random(in: 1...100)) Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
+        addTransaction(transOne)
+        
+        // Check if new transaction is added
+        
+        
+        let indexPath = IndexPath(row: lastIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        
+
     }
     
     @IBAction func spentMoney(_ sender: Any) {
-        print("spent money")
+        let lastIndex = transactionList.count
+        let transOne = cellData(amount: "+ \(Int.random(in: 1...100)) Rs", date: "22-12-2024", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
+        addTransaction(transOne)
+        
+        let indexPath = IndexPath(row: lastIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
 
-    
-    @IBOutlet var currentBalance: UILabel!
-    
-    @IBOutlet var StackViewBGImage: UIImageView!
-
-    @IBOutlet var moneyAddAndSpentBGImage: UIImageView!
-    
-    
-
-    var moneySpentOrAddedArray: [String] = []
-
- 
-    var dateOfTransactionArray: [String] = []
     
     func applyBorderRadius() {
         StackViewBGImage.layer.cornerRadius = 55
@@ -66,14 +85,11 @@ class ViewController: UIViewController {
         
     }
     
-    @IBOutlet var tableView: UITableView!
-        
     
 }
 
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped me")
@@ -81,7 +97,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return transactionList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -89,8 +105,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return transactionList.count
+        return 1
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,8 +115,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.amountData.text = "\(transactionList[indexPath.row].amount)"
         cell.dateData.text = "\(transactionList[indexPath.row].date)"
         cell.transactionStatusImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
+        cell.transactionStatusBGImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedBGImage)
+////      to add the cell at the top from bottom up
+//        cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        print("this is number of rows \(transactionList.count)")
         return cell
     }
-    
-}
 
+}

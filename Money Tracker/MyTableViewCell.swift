@@ -18,6 +18,9 @@ class MyTableViewCell: UITableViewCell {
     @IBOutlet var transactionStatusImage: UIImageView!
     
     
+    @IBOutlet var transactionStatusBGImage: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
