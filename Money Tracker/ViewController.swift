@@ -35,11 +35,6 @@ class DateManager {
 }
 
 
-//let dateManager = DateManager()
-//// current date store in this variable
-//let currentDate = dateManager.getCurrentDate()
-
-
 
 class ViewController: UIViewController {
     
@@ -81,9 +76,6 @@ class ViewController: UIViewController {
 //      initially current balance label displays 0
         currentBalance.text = "0 Rs"
         
-////       to reverse cell addition in TableView
-//        tableView.transform  = CGAffineTransform(scaleX: 1, y: -1)
-        
         
 //      setting background image for the UITableView
         let backgroundImage = UIImage(named: "Transaction History BG")
@@ -97,10 +89,10 @@ class ViewController: UIViewController {
     
 //  adding the transaction data to the transactionList
     func addTransaction(_ transaction: cellData) {
-            transactionList.append(transaction)
+        transactionList.insert(transaction, at: 0)
     }
     
-    
+//  alert view implementation
     func buttonTapped(message: String, title: String, buttonName: String) {
         let ac = UIAlertController(title: nil, message: "\(message)", preferredStyle: .alert)
 //      adding a text field
@@ -115,10 +107,11 @@ class ViewController: UIViewController {
 //          This is the text entry after enter key
             let AddedItem = ac.textFields![0]
             
-//          using a function to add items in the uitable view
-            addMoneyOrSpentMoney(AddedItem.text!, buttonName: buttonName)
+//          using a function to add items to the uitable view and append data to transaction list and to
+//          sned data to currentBalance label
+            addMoneyOrSpentMoneyImplementation(AddedItem.text!, buttonName: buttonName)
         }
-        
+
         let cancelButton = UIAlertAction(title: "Cancel",
                                          style: .default)
         
@@ -128,65 +121,49 @@ class ViewController: UIViewController {
         present(ac, animated: true)
     }
     
-    
-    func addMoneyOrSpentMoney(_ item: String, buttonName: String) {
+    func addMoneyOrSpentMoneyImplementation(_ item: String, buttonName: String) {
         let numberEntered = Int(item)
         
-        
-        if buttonName == "addMoney" {
-            
-            //      if the number entered is 0 or nothing it returns without appending it to transactionlist
-            if numberEntered == 0 || numberEntered == nil {
-                return
-            }
-            
-            currentbalanceNumber += numberEntered ?? 0
-            currentBalance.text = "\(currentbalanceNumber) Rs"
-            
-            let dateManager = DateManager()
-            // current date store in this variable
-            let currentDate = dateManager.getCurrentDate()
-            
-            let lastIndex = transactionList.count
-            let transOne = cellData(amount: "+ \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
-            addTransaction(transOne)
-            
-            // Check if new transaction is added
-            
-            let indexPath = IndexPath(row: lastIndex, section: 0)
-            let indexPaths = [indexPath]
-            tableView.insertRows(at: indexPaths, with: .automatic)
-            return
-            
-        } else if buttonName == "spentMoney"{
-            //      if the number entered is 0 or nothing it returns without appending it to transactionlist
-            if numberEntered == 0 || numberEntered == nil {
-                return
-            }
-            
-            currentbalanceNumber -= numberEntered ?? 0
-            currentBalance.text = "\(currentbalanceNumber) Rs"
-            
-            let dateManager = DateManager()
-            // current date store in this variable
-            let currentDate = dateManager.getCurrentDate()
-            
-            let lastIndex = transactionList.count
-            let transOne = cellData(amount: "- \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
-            addTransaction(transOne)
-            
-            // Check if new transaction is added
-            
-            let indexPath = IndexPath(row: lastIndex, section: 0)
-            let indexPaths = [indexPath]
-            tableView.insertRows(at: indexPaths, with: .automatic)
+        //      if the number entered is 0 or nothing it returns without appending it to transactionlist
+        if numberEntered == 0 || numberEntered == nil {
             return
         }
+             
+        let dateManager = DateManager()
+        // current date store in this variable
+        let currentDate = dateManager.getCurrentDate()
+        
+        let lastIndex = transactionList.count
+        
+        var transOne: cellData
+        
+//      add the cell data and displaying it according to the button name given
+        if buttonName == "addMoney" {
+            transOne = cellData(amount: "+ \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
+            currentbalanceNumber += numberEntered ?? 0
+            currentBalance.text = "\(currentbalanceNumber) Rs"
+        } else {
+            transOne = cellData(amount: "- \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
+            currentbalanceNumber -= numberEntered ?? 0
+            currentBalance.text = "\(currentbalanceNumber) Rs"
+        }
+        
+        addTransaction(transOne)
+        
+        // adding new row at top such that latest result remains on top
+        let indexPath = IndexPath(row: 0, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        return
+            
     }
+    
+
     
 //  add money button
     @IBAction func addMoney(_ sender: Any) {
         
+//      function to check which button is tapped
         buttonTapped(message: "Add Money", title: "Add", buttonName: "addMoney")
         
   
@@ -195,6 +172,7 @@ class ViewController: UIViewController {
 //  money spent button
     @IBAction func spentMoney(_ sender: Any) {
         
+//      function to check which button is tapped
         buttonTapped(message: "Money Spent", title: "Spent", buttonName: "spentMoney")
         
     }
@@ -242,9 +220,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.transactionStatusImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
         cell.transactionStatusBGImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedBGImage)
         
-////      to add the cell at the top from bottom up
-//        cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        
+   
         return cell
     }
     
