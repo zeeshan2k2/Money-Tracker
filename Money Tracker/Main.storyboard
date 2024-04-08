@@ -21,21 +21,23 @@
                                 <rect key="frame" x="0.0" y="209" width="393" height="643"/>
                                 <color key="backgroundColor" cyan="0.53095769557823125" magenta="0.24471194727891157" yellow="0.51732568027210879" black="0.46434563758389263" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-ff-qBu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="singleLineEtched" separatorInsetReference="fromAutomaticInsets" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-ff-qBu">
                                 <rect key="frame" x="0.0" y="210" width="393" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="76" id="u0f-CC-1hy" customClass="MyTableViewCell" customModule="Money_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="76"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="75" id="u0f-CC-1hy" customClass="MyTableViewCell" customModule="Money_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u0f-CC-1hy" id="ewl-Xv-nei">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97b-HN-kp1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
+                                                    <rect key="frame" x="0.0" y="8" width="353" height="67"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 250 Rs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzC-PL-ywY">
-                                                    <rect key="frame" x="19.999999999999993" y="25" width="98.333333333333314" height="30"/>
+                                                    <rect key="frame" x="19.999999999999993" y="27" width="98.333333333333314" height="30"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -47,32 +49,31 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-6-2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zel-ru-40h">
-                                                    <rect key="frame" x="253.33333333333334" y="30" width="79.666666666666657" height="19.333333333333329"/>
+                                                    <rect key="frame" x="253.33333333333334" y="32" width="79.666666666666657" height="19.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money-recive.png" translatesAutoresizingMaskIntoConstraints="NO" id="0WU-J2-1Un">
-                                                    <rect key="frame" x="133" y="22" width="33" height="33"/>
+                                                    <rect key="frame" x="133" y="24" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="L3o-2w-DnY"/>
                                                         <constraint firstAttribute="width" constant="33" id="j7j-lK-SfM"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="kzC-PL-ywY" firstAttribute="leading" secondItem="ewl-Xv-nei" secondAttribute="leading" constant="20" id="5v4-n8-eiP"/>
-                                                <constraint firstItem="kzC-PL-ywY" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="25" id="8Nt-bX-fX2"/>
-                                                <constraint firstAttribute="bottom" secondItem="97b-HN-kp1" secondAttribute="bottom" id="BzF-si-xS2"/>
+                                                <constraint firstItem="kzC-PL-ywY" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="27" id="8Nt-bX-fX2"/>
                                                 <constraint firstAttribute="trailing" secondItem="zel-ru-40h" secondAttribute="trailing" constant="20" symbolic="YES" id="HRl-uy-b23"/>
                                                 <constraint firstItem="0WU-J2-1Un" firstAttribute="leading" secondItem="kzC-PL-ywY" secondAttribute="trailing" constant="14.666666666666686" id="Qr8-M3-BbV"/>
-                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="30" id="UBo-rY-7aQ"/>
-                                                <constraint firstItem="97b-HN-kp1" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" id="WiX-TV-Qia"/>
+                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="32" id="UBo-rY-7aQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="tYQ-bK-39h" secondAttribute="trailing" constant="20.666666666666742" id="gJp-KO-egV"/>
-                                                <constraint firstItem="0WU-J2-1Un" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="22" id="gl9-xP-RnW"/>
+                                                <constraint firstItem="0WU-J2-1Un" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="24" id="gl9-xP-RnW"/>
                                                 <constraint firstItem="97b-HN-kp1" firstAttribute="leading" secondItem="ewl-Xv-nei" secondAttribute="leading" id="kwO-nh-1i4"/>
                                                 <constraint firstAttribute="trailing" secondItem="97b-HN-kp1" secondAttribute="trailing" id="qYS-F5-GRF"/>
+                                                <constraint firstItem="97b-HN-kp1" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="8" id="twp-di-UwV"/>
+                                                <constraint firstAttribute="bottom" secondItem="97b-HN-kp1" secondAttribute="bottom" id="wv1-s3-xIG"/>
                                                 <constraint firstItem="tYQ-bK-39h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="35" id="zD3-Yg-2rM"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -198,6 +199,9 @@
         <image name="money-recive.png" width="75" height="75"/>
         <systemColor name="quaternaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -8,7 +8,6 @@
 import UIKit
 import Foundation
 
-var arr1 = [3, 4, 3, 3]
 
 
 // Class for Date
@@ -84,6 +83,8 @@ class ViewController: UIViewController {
         self.tableView.backgroundView = imageView
         tableView.layer.cornerRadius = 46
         
+        
+        
     }
     
     
@@ -112,8 +113,11 @@ class ViewController: UIViewController {
             addMoneyOrSpentMoneyImplementation(AddedItem.text!, buttonName: buttonName)
         }
 
+        
+//      creating a cancel button
         let cancelButton = UIAlertAction(title: "Cancel",
                                          style: .default)
+        
         
 //      adding the button
         ac.addAction(SubmitAction)
@@ -177,7 +181,7 @@ class ViewController: UIViewController {
         
     }
     
-
+    
 //  border radius function for the money spent or money added button background image
     func applyBorderRadius() {
         StackViewBGImage.layer.cornerRadius = 55
@@ -187,6 +191,10 @@ class ViewController: UIViewController {
         
     }
     
+    // Assuming SpacerCellModel is a model for your spacer cells
+    
+
+    
     
 }
 
@@ -195,6 +203,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionList.count
@@ -207,21 +216,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //      selecting the cell with the identifier
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyTableViewCell
-        
 //      setting data of cell to display
         cell.amountData.text = "\(transactionList[indexPath.row].amount)"
         cell.dateData.text = "\(transactionList[indexPath.row].date)"
         cell.transactionStatusImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
         cell.transactionStatusBGImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedBGImage)
         
-   
+//      setting background color to transparent such that there remains a space between two cells
+        cell.layer.backgroundColor = UIColor.clear.cgColor
+//      setting background imgage radius of the cell such that uniformity is obtained and it looks like a cell
+        cell.transactionStatusBGImage.layer.cornerRadius = 15
         return cell
     }
+
+    
     
 }
