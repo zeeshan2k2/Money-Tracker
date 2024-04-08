@@ -9,32 +9,6 @@ import UIKit
 import Foundation
 
 
-
-// Class for Date
-class DateManager {
-    
-    func getCurrentDate() -> String {
-        // Get the current date
-        let currentDate = Date()
-
-        // Create a calendar object
-        let calendar = Calendar.current
-
-        // Get the components of the current date
-        let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
-
-        // Extract the day, month, and year from the components
-        let day = components.day
-        let month = components.month
-        let year = components.year
-
-        // Return the current date as a formatted string
-        return "\(day!)-\(month!)-\(year!)"
-    }
-}
-
-
-
 class ViewController: UIViewController {
     
 //  table view variable
@@ -54,11 +28,6 @@ class ViewController: UIViewController {
 //  money spent or recieved buttons background Image
     @IBOutlet var moneyAddAndSpentBGImage: UIImageView!
 
-    
-//    array to store date and amount if needed
-    
-//    var moneySpentOrAddedArray: [String] = []
-//    var dateOfTransactionArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,11 +56,42 @@ class ViewController: UIViewController {
         
     }
     
+//  border radius function for the money spent or money added button background image
+    func applyBorderRadius() {
+        StackViewBGImage.layer.cornerRadius = 55
+        moneyAddAndSpentBGImage.layer.cornerRadius = 30
+        currentBalance?.layer.cornerRadius = 8
+        currentBalance?.layer.masksToBounds = true
+        
+    }
+    
+    
+//  function to get currten date
+    func getCurrentDate() -> String {
+        // Get the current date
+        let currentDate = Date()
+
+        // Create a calendar object
+        let calendar = Calendar.current
+
+        // Get the components of the current date
+        let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+
+        // Extract the day, month, and year from the components
+        let day = components.day
+        let month = components.month
+        let year = components.year
+
+        // Return the current date as a formatted string
+        return "\(day!)-\(month!)-\(year!)"
+    }
+    
     
 //  adding the transaction data to the transactionList
     func addTransaction(_ transaction: cellData) {
         transactionList.insert(transaction, at: 0)
     }
+    
     
 //  alert view implementation
     func buttonTapped(message: String, title: String, buttonName: String) {
@@ -101,6 +101,8 @@ class ViewController: UIViewController {
             textField.placeholder = "Enter Amount"
             textField.keyboardType = .numberPad // getting the num pad up
         }
+        
+//      setting color of alert view controller
         
 //      adding submit button functionality
         let SubmitAction = UIAlertAction(title: "\(title)",
@@ -112,18 +114,26 @@ class ViewController: UIViewController {
 //          sned data to currentBalance label
             addMoneyOrSpentMoneyImplementation(AddedItem.text!, buttonName: buttonName)
         }
-
         
+//      condition for Add and Spent button color
+        if title == "Add" {
+            SubmitAction.setValue(UIColor(hex: "#008000"), forKey: "titleTextColor")
+        } else {
+            SubmitAction.setValue(UIColor(hex: "#FF474D"), forKey: "titleTextColor")
+        }
 //      creating a cancel button
         let cancelButton = UIAlertAction(title: "Cancel",
                                          style: .default)
         
+//      setting cancel button color
+        cancelButton.setValue(UIColor(hex: "#FF6C71"), forKey: "titleTextColor")
         
 //      adding the button
         ac.addAction(SubmitAction)
         ac.addAction(cancelButton)
         present(ac, animated: true)
     }
+    
     
     func addMoneyOrSpentMoneyImplementation(_ item: String, buttonName: String) {
         let numberEntered = Int(item)
@@ -133,9 +143,9 @@ class ViewController: UIViewController {
             return
         }
              
-        let dateManager = DateManager()
+//        let dateManager = DateManager()
         // current date store in this variable
-        let currentDate = dateManager.getCurrentDate()
+        let currentDate = getCurrentDate()
         
         let lastIndex = transactionList.count
         
@@ -170,7 +180,6 @@ class ViewController: UIViewController {
 //      function to check which button is tapped
         buttonTapped(message: "Add Money", title: "Add", buttonName: "addMoney")
         
-  
     }
     
 //  money spent button
@@ -181,21 +190,6 @@ class ViewController: UIViewController {
         
     }
     
-    
-//  border radius function for the money spent or money added button background image
-    func applyBorderRadius() {
-        StackViewBGImage.layer.cornerRadius = 55
-        moneyAddAndSpentBGImage.layer.cornerRadius = 30
-        currentBalance?.layer.cornerRadius = 8
-        currentBalance?.layer.masksToBounds = true
-        
-    }
-    
-    // Assuming SpacerCellModel is a model for your spacer cells
-    
-
-    
-    
 }
 
 
@@ -204,15 +198,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //    }
     
-    
+//  setting number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionList.count
     }
     
+//  setting cell height through this function
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
     
+//  number of sections in UITableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -235,4 +231,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     
     
+}
+
+
+// entension to use hex color code
+extension UIColor {
+    convenience init(hex: String) {
+        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+
+        Scanner(string: hexSanitized).scanHexInt64(&rgb)
+
+        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(rgb & 0x0000FF) / 255.0
+
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
 }
