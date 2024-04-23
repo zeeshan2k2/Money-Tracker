@@ -136,7 +136,13 @@ class ViewController: UIViewController {
     
     
     func addMoneyOrSpentMoneyImplementation(_ item: String, buttonName: String) {
+//      Using this to Format the number and add commas
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
         let numberEntered = Int(item)
+//      the formatted number
+        let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered!))
         
         //      if the number entered is 0 or nothing it returns without appending it to transactionlist
         if numberEntered == 0 || numberEntered == nil {
@@ -153,13 +159,15 @@ class ViewController: UIViewController {
         
 //      add the cell data and displaying it according to the button name given
         if buttonName == "addMoney" {
-            transOne = cellData(amount: "+ \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
+            transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
             currentbalanceNumber += numberEntered ?? 0
-            currentBalance.text = "\(currentbalanceNumber) Rs"
+            let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
+            currentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
         } else {
-            transOne = cellData(amount: "- \(item) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
+            transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
             currentbalanceNumber -= numberEntered ?? 0
-            currentBalance.text = "\(currentbalanceNumber) Rs"
+            let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
+            currentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
         }
         
         addTransaction(transOne)
