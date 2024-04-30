@@ -20,5 +20,5 @@ class cellData
         self.moneySpentOrRecievedImage = moneySpentOrRecievedImage
         self.moneySpentOrRecievedBGImage = moneySpentOrRecievedBGImage
     }
-    
+
 }

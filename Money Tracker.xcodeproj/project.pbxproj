@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C101CAD62BE124FC00EC52A9 /* MoneyTrackerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */; };
+		C101CAD72BE124FC00EC52A9 /* TrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */; };
+		C101CAD82BE124FC00EC52A9 /* ConfigureColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C101CAD52BE124FC00EC52A9 /* ConfigureColor.swift */; };
 		C10A8CFD2BC199A800391745 /* Green Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = C10A8CFB2BC199A800391745 /* Green Gradient.png */; };
 		C10A8CFE2BC199A800391745 /* Red Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = C10A8CFC2BC199A800391745 /* Red Gradient.png */; };
 		C11C3D382BB6EAB70010E8A3 /* Transaction History BG.png in Resources */ = {isa = PBXBuildFile; fileRef = C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */; };
 		C167E0662BBCB00200065336 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0652BBCB00200065336 /* CellData.swift */; };
-		C167E0682BBCB19300065336 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0672BBCB19300065336 /* MyTableViewCell.swift */; };
 		C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */; };
 		C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */; };
-		C1C443DD2BB6C95600A3C1DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443DC2BB6C95600A3C1DF /* ViewController.swift */; };
 		C1C443E22BB6C95700A3C1DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1C443E12BB6C95700A3C1DF /* Assets.xcassets */; };
 		C1C443E52BB6C95700A3C1DF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C1C443E42BB6C95700A3C1DF /* Base */; };
 		C1C443F92BB6E82500A3C1DF /* Grade Grey.png in Resources */ = {isa = PBXBuildFile; fileRef = C1C443F82BB6E82500A3C1DF /* Grade Grey.png */; };
@@ -24,15 +25,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyTrackerVC.swift; sourceTree = "<group>"; };
+		C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerCell.swift; sourceTree = "<group>"; };
+		C101CAD52BE124FC00EC52A9 /* ConfigureColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureColor.swift; sourceTree = "<group>"; };
 		C10A8CFB2BC199A800391745 /* Green Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Gradient.png"; sourceTree = "<group>"; };
 		C10A8CFC2BC199A800391745 /* Red Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Gradient.png"; sourceTree = "<group>"; };
 		C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Transaction History BG.png"; sourceTree = "<group>"; };
 		C167E0652BBCB00200065336 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
-		C167E0672BBCB19300065336 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		C1C443D52BB6C95600A3C1DF /* Money Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C1C443DC2BB6C95600A3C1DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C1C443E12BB6C95700A3C1DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1C443E42BB6C95700A3C1DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1C443E62BB6C95700A3C1DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,9 +80,10 @@
 				C1E465392BBB91D60088B2A5 /* money-send.png */,
 				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
 				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
+				C101CAD52BE124FC00EC52A9 /* ConfigureColor.swift */,
+				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
+				C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */,
 				C167E0652BBCB00200065336 /* CellData.swift */,
-				C167E0672BBCB19300065336 /* MyTableViewCell.swift */,
-				C1C443DC2BB6C95600A3C1DF /* ViewController.swift */,
 				C1CC2B1C2BC4A6BD00CBEC77 /* Main.storyboard */,
 				C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */,
 				C1C443F82BB6E82500A3C1DF /* Grade Grey.png */,
@@ -168,10 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1C443DD2BB6C95600A3C1DF /* ViewController.swift in Sources */,
+				C101CAD72BE124FC00EC52A9 /* TrackerCell.swift in Sources */,
+				C101CAD62BE124FC00EC52A9 /* MoneyTrackerVC.swift in Sources */,
+				C101CAD82BE124FC00EC52A9 /* ConfigureColor.swift in Sources */,
 				C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */,
 				C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */,
-				C167E0682BBCB19300065336 /* MyTableViewCell.swift in Sources */,
 				C167E0662BBCB00200065336 /* CellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

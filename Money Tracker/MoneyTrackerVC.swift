@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 
 
-class ViewController: UIViewController {
+class MoneyTrackerVC: UIViewController {
     
 //  table view variable
     @IBOutlet var tableView: UITableView!
@@ -18,19 +18,29 @@ class ViewController: UIViewController {
     var transactionList = [cellData]()
     
 //  current balance variable
-    @IBOutlet var currentBalance: UILabel!
+    @IBOutlet var labelCurrentBalance: UILabel!
 //  variable to store the current balance number
     var currentbalanceNumber = 0
     
 //  UITableView Backgroung Image
-    @IBOutlet var StackViewBGImage: UIImageView!
+    @IBOutlet var imageStackViewBG: UIImageView!
 
 //  money spent or recieved buttons background Image
-    @IBOutlet var moneyAddAndSpentBGImage: UIImageView!
+    @IBOutlet var imageMoneyAddAndSpentBG: UIImageView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//      to keep the app appearance light mode
+        overrideUserInterfaceStyle = .light
+        
+//      function that contains all the configuration
+        configureMoneyTrackerVC()
+    }
+    
+//    a function containing all element code
+    func configureMoneyTrackerVC() {
         
 //      to keep the app appearance light mode
         overrideUserInterfaceStyle = .light
@@ -42,7 +52,7 @@ class ViewController: UIViewController {
         applyBorderRadius()
         
 //      initially current balance label displays 0
-        currentBalance.text = "0 Rs"
+        labelCurrentBalance.text = "0 Rs"
         
         
 //      setting background image for the UITableView
@@ -51,17 +61,15 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         self.tableView.backgroundView = imageView
         tableView.layer.cornerRadius = 46
-        
-        
-        
     }
+    
     
 //  border radius function for the money spent or money added button background image
     func applyBorderRadius() {
-        StackViewBGImage.layer.cornerRadius = 55
-        moneyAddAndSpentBGImage.layer.cornerRadius = 30
-        currentBalance?.layer.cornerRadius = 8
-        currentBalance?.layer.masksToBounds = true
+        imageStackViewBG.layer.cornerRadius = 55
+        imageMoneyAddAndSpentBG.layer.cornerRadius = 30
+        labelCurrentBalance?.layer.cornerRadius = 8
+        labelCurrentBalance?.layer.masksToBounds = true
         
     }
     
@@ -142,7 +150,7 @@ class ViewController: UIViewController {
         
         let numberEntered = Int(item)
 //      the formatted number
-        let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered!))
+        let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered ?? 0))
         
         //      if the number entered is 0 or nothing it returns without appending it to transactionlist
         if numberEntered == 0 || numberEntered == nil {
@@ -162,12 +170,12 @@ class ViewController: UIViewController {
             transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
             currentbalanceNumber += numberEntered ?? 0
             let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
-            currentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
+            labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
         } else {
             transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
             currentbalanceNumber -= numberEntered ?? 0
             let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
-            currentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
+            labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
         }
         
         addTransaction(transOne)
@@ -177,34 +185,12 @@ class ViewController: UIViewController {
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         return
-            
-    }
-    
-
-    
-//  add money button
-    @IBAction func addMoney(_ sender: Any) {
-        
-//      function to check which button is tapped
-        buttonTapped(message: "Add Money", title: "Add", buttonName: "addMoney")
-        
-    }
-    
-//  money spent button
-    @IBAction func spentMoney(_ sender: Any) {
-        
-//      function to check which button is tapped
-        buttonTapped(message: "Money Spent", title: "Spent", buttonName: "spentMoney")
-        
     }
     
 }
 
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    }
+extension MoneyTrackerVC: UITableViewDataSource, UITableViewDelegate {
     
 //  setting number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -223,46 +209,40 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //      selecting the cell with the identifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TrackerCell
 //      setting data of cell to display
-        cell.amountData.text = "\(transactionList[indexPath.row].amount)"
-        cell.dateData.text = "\(transactionList[indexPath.row].date)"
-        cell.transactionStatusImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
-        cell.transactionStatusBGImage.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedBGImage)
+        cell.labelAmountData.text = "\(transactionList[indexPath.row].amount)"
+        cell.labelDateData.text = "\(transactionList[indexPath.row].date)"
+        cell.imageTransactionStatus.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedImage)
+        cell.imageTransactionStatusBG.image = UIImage(named: transactionList[indexPath.row].moneySpentOrRecievedBGImage)
         
 //      setting background color to transparent such that there remains a space between two cells
         cell.layer.backgroundColor = UIColor.clear.cgColor
 //      setting background imgage radius of the cell such that uniformity is obtained and it looks like a cell
-        cell.transactionStatusBGImage.layer.cornerRadius = 15
+        cell.imageTransactionStatusBG.layer.cornerRadius = 15
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        transactionList.remove(at: indexPath.row)
+//        
+//        let indexPaths = [indexPath]
+//        tableView.deleteRows(at: indexPaths, with: .automatic)
+//    }
 
-    
-    
 }
 
-
-// entension to use hex color code
-extension UIColor {
-    // Convenience initializer for creating UIColor from hexadecimal color codes.
-    convenience init(hex: String) {
-        // Remove leading and trailing whitespace and newline characters.
-        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-        // Remove the '#' character if it exists.
-        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-
-        var rgb: UInt64 = 0
-
-        // Scan the hexadecimal string and convert it to an unsigned 64-bit integer.
-        Scanner(string: hexSanitized).scanHexInt64(&rgb)
-
-        // Extract red, green, and blue components from the hexadecimal value.
-        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-        let blue = CGFloat(rgb & 0x0000FF) / 255.0
-
-        // Initialize the UIColor instance using the extracted color components.
-        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+extension MoneyTrackerVC {
+    
+//  add money button
+    @IBAction func addMoney(_ sender: Any) {
+//      function to check which button is tapped
+        buttonTapped(message: "Add Money", title: "Add", buttonName: "addMoney")
+    }
+    
+//  money spent button
+    @IBAction func spentMoney(_ sender: Any) {
+//      function to check which button is tapped
+        buttonTapped(message: "Money Spent", title: "Spent", buttonName: "spentMoney")
     }
 }
-

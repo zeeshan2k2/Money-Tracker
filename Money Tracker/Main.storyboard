@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Money TrackerVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Money_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MoneyTrackerVC" customModule="Money_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +26,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="75" id="u0f-CC-1hy" customClass="MyTableViewCell" customModule="Money_Tracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="75" id="u0f-CC-1hy" customClass="TrackerCell" customModule="Money_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u0f-CC-1hy" id="ewl-Xv-nei">
@@ -80,10 +80,10 @@
                                         <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                         <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                                         <connections>
-                                            <outlet property="amountData" destination="kzC-PL-ywY" id="orT-v2-9ga"/>
-                                            <outlet property="dateData" destination="zel-ru-40h" id="T2f-jg-FoG"/>
-                                            <outlet property="transactionStatusBGImage" destination="97b-HN-kp1" id="JEZ-s9-aBx"/>
-                                            <outlet property="transactionStatusImage" destination="0WU-J2-1Un" id="HiB-mC-Obo"/>
+                                            <outlet property="imageTransactionStatus" destination="0WU-J2-1Un" id="HiB-mC-Obo"/>
+                                            <outlet property="imageTransactionStatusBG" destination="97b-HN-kp1" id="JEZ-s9-aBx"/>
+                                            <outlet property="labelAmountData" destination="kzC-PL-ywY" id="orT-v2-9ga"/>
+                                            <outlet property="labelDateData" destination="zel-ru-40h" id="T2f-jg-FoG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,9 +181,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="StackViewBGImage" destination="pkQ-vn-POJ" id="RDE-wS-SqX"/>
-                        <outlet property="currentBalance" destination="RET-YI-a94" id="q0g-g1-D3P"/>
-                        <outlet property="moneyAddAndSpentBGImage" destination="0gW-uh-n44" id="7ka-eV-rYA"/>
+                        <outlet property="imageMoneyAddAndSpentBG" destination="0gW-uh-n44" id="7ka-eV-rYA"/>
+                        <outlet property="imageStackViewBG" destination="pkQ-vn-POJ" id="RDE-wS-SqX"/>
+                        <outlet property="labelCurrentBalance" destination="RET-YI-a94" id="q0g-g1-D3P"/>
                         <outlet property="tableView" destination="IMP-ff-qBu" id="T9l-3u-x3i"/>
                     </connections>
                 </viewController>
