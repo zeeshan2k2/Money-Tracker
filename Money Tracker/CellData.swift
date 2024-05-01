@@ -13,12 +13,14 @@ class cellData
     var date: String
     var moneySpentOrRecievedImage: String
     var moneySpentOrRecievedBGImage: String
+    var imageCategoryIcon: String
     
-    init(amount: String, date: String, moneySpentOrRecievedImage: String, moneySpentOrRecievedBGImage: String) {
+    init(amount: String, date: String, moneySpentOrRecievedImage: String, moneySpentOrRecievedBGImage: String, imageCategoryIcon: String) {
         self.amount = amount
         self.date = date
         self.moneySpentOrRecievedImage = moneySpentOrRecievedImage
         self.moneySpentOrRecievedBGImage = moneySpentOrRecievedBGImage
+        self.imageCategoryIcon = imageCategoryIcon
     }
 
 }

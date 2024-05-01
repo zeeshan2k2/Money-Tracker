@@ -49,8 +49,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-6-2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zel-ru-40h">
-                                                    <rect key="frame" x="253.33333333333334" y="32" width="79.666666666666657" height="19.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="271.33333333333331" y="54" width="70.666666666666686" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -61,15 +61,24 @@
                                                         <constraint firstAttribute="width" constant="33" id="j7j-lK-SfM"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bonus" translatesAutoresizingMaskIntoConstraints="NO" id="Vqg-Kh-Kop">
+                                                    <rect key="frame" x="311" y="19" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="27" id="Oky-3L-4qU"/>
+                                                        <constraint firstAttribute="height" constant="27" id="saJ-MO-eaI"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kzC-PL-ywY" firstAttribute="leading" secondItem="ewl-Xv-nei" secondAttribute="leading" constant="20" id="5v4-n8-eiP"/>
                                                 <constraint firstItem="kzC-PL-ywY" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="27" id="8Nt-bX-fX2"/>
-                                                <constraint firstAttribute="trailing" secondItem="zel-ru-40h" secondAttribute="trailing" constant="20" symbolic="YES" id="HRl-uy-b23"/>
+                                                <constraint firstAttribute="trailing" secondItem="zel-ru-40h" secondAttribute="trailing" constant="11" id="HRl-uy-b23"/>
+                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="Vqg-Kh-Kop" secondAttribute="bottom" constant="8" symbolic="YES" id="Plc-pr-eGA"/>
                                                 <constraint firstItem="0WU-J2-1Un" firstAttribute="leading" secondItem="kzC-PL-ywY" secondAttribute="trailing" constant="14.666666666666686" id="Qr8-M3-BbV"/>
-                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="32" id="UBo-rY-7aQ"/>
+                                                <constraint firstItem="zel-ru-40h" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="54" id="UBo-rY-7aQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="tYQ-bK-39h" secondAttribute="trailing" constant="20.666666666666742" id="gJp-KO-egV"/>
                                                 <constraint firstItem="0WU-J2-1Un" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="24" id="gl9-xP-RnW"/>
+                                                <constraint firstItem="Vqg-Kh-Kop" firstAttribute="leading" secondItem="97b-HN-kp1" secondAttribute="trailing" constant="-42" id="iK4-ep-t2P"/>
                                                 <constraint firstItem="97b-HN-kp1" firstAttribute="leading" secondItem="ewl-Xv-nei" secondAttribute="leading" id="kwO-nh-1i4"/>
                                                 <constraint firstAttribute="trailing" secondItem="97b-HN-kp1" secondAttribute="trailing" id="qYS-F5-GRF"/>
                                                 <constraint firstItem="97b-HN-kp1" firstAttribute="top" secondItem="ewl-Xv-nei" secondAttribute="top" constant="8" id="twp-di-UwV"/>
@@ -196,6 +205,7 @@
         <image name="Image" width="112" height="98"/>
         <image name="Image 1" width="112" height="98"/>
         <image name="Transaction History BG.png" width="300" height="293"/>
+        <image name="bonus" width="512" height="512"/>
         <image name="money-recive.png" width="75" height="75"/>
         <systemColor name="quaternaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>

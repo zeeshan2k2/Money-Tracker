@@ -101,16 +101,78 @@ class MoneyTrackerVC: UIViewController {
     }
     
     
+//   category variable
+    var selectedCategory: String?
+    
 //  alert view implementation
     func buttonTapped(message: String, title: String, buttonName: String) {
         let ac = UIAlertController(title: nil, message: "\(message)", preferredStyle: .alert)
+
 //      adding a text field
         ac.addTextField { (textField) in
             textField.placeholder = "Enter Amount"
             textField.keyboardType = .numberPad // getting the num pad up
         }
         
-//      setting color of alert view controller
+        var list = ""
+        
+        if buttonName == "addMoney" {
+            //      adding drop down menu for category
+            ac.addTextField(configurationHandler: { textField in
+                textField.placeholder = "Category"
+                let button = UIButton(type: .custom)
+                button.setTitle("Select", for: .normal)
+                
+                
+                let categories = ["Allowance", "Salary", "Petty cash", "Bonus", "Other"]
+                // Create a menu with categories
+                let categoriesMenu = UIMenu(title: "Categories", children: categories.map { category in
+                    UIAction(title: category) { action in
+                        self.selectedCategory = category
+                        textField.text = category
+                    }
+                })
+                
+                button.menu = categoriesMenu
+                button.showsMenuAsPrimaryAction = true
+                textField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
+                textField.rightView?.tintColor = .black
+                textField.rightViewMode = .always
+                textField.isUserInteractionEnabled = false
+                textField.superview?.addSubview(button)
+                ac.view.layoutIfNeeded()
+                button.frame = textField.superview?.bounds ?? .zero
+            })
+            
+        } else {
+            //      adding drop down menu for category
+            ac.addTextField(configurationHandler: { textField in
+                textField.placeholder = "Category"
+                let button = UIButton(type: .custom)
+                button.setTitle("Select", for: .normal)
+                
+                
+                let categories = ["Food", "Groceries", "Travelling", "Vehicle", "Education", "Household", "Socialising", "Clothes", "Mobile", "Other"]
+                // Create a menu with categories
+                let categoriesMenu = UIMenu(title: "Categories", children: categories.map { category in
+                    UIAction(title: category) { action in
+                        self.selectedCategory = category
+                        textField.text = category
+                    }
+                })
+                
+                button.menu = categoriesMenu
+                button.showsMenuAsPrimaryAction = true
+                textField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
+                textField.rightView?.tintColor = .black
+                textField.rightViewMode = .always
+                textField.isUserInteractionEnabled = false
+                textField.superview?.addSubview(button)
+                ac.view.layoutIfNeeded()
+                button.frame = textField.superview?.bounds ?? .zero
+            })
+        }
+
         
 //      adding submit button functionality
         let SubmitAction = UIAlertAction(title: "\(title)",
@@ -167,12 +229,12 @@ class MoneyTrackerVC: UIViewController {
         
 //      add the cell data and displaying it according to the button name given
         if buttonName == "addMoney" {
-            transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient")
+            transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient", imageCategoryIcon: "")
             currentbalanceNumber += numberEntered ?? 0
             let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
             labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
         } else {
-            transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient")
+            transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient", imageCategoryIcon: "")
             currentbalanceNumber -= numberEntered ?? 0
             let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
             labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
@@ -223,12 +285,143 @@ extension MoneyTrackerVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        transactionList.remove(at: indexPath.row)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        editAlertView(indexPath)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let ac = UIAlertController(title: nil, message: "Edit or Delete", preferredStyle: .alert)
+//        let numberAmount = transactionList[indexPath.row].amount
+//        let numberString = numberAmount.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+//        let number = Int(numberString)
 //        
-//        let indexPaths = [indexPath]
-//        tableView.deleteRows(at: indexPaths, with: .automatic)
-//    }
+//        let buttonName = "Edit"
+//        
+//        ac.addTextField { (textField) in
+//            textField.text = "\(number ?? 0)"
+//            textField.keyboardType = .numberPad // getting the num pad up
+//        }
+//        
+////      adding submit button functionality
+//        let EditAction = UIAlertAction(title: "Edit",
+//                                         style: .default) { [unowned self, ac] action in
+////          This is the text entry after enter key
+//            let AddedItem = ac.textFields![0]
+//            
+////          checking if the number entered is nil or zero
+//            let numEntered = Int(AddedItem.text!)
+//            if numEntered != 0 || numEntered != nil {
+//                self.transactionList[indexPath.row].amount = "+ \(AddedItem.text!) Rs"
+//                let indexPaths = [indexPath]
+//                tableView.reloadRows(at: indexPaths, with: .automatic)
+//            }
+//        }
+//        
+//        
+////      creating a cancel button
+//        let deleteButton = UIAlertAction(title: "Delete",
+//                                         style: .default) { _ in
+//            let AddedItem = ac.textFields![0]
+//            let numEntered = Int(AddedItem.text!)
+//            let typeOfTransaction = self.transactionList[indexPath.row].moneySpentOrRecievedImage
+//            if typeOfTransaction == "money-send" {
+//                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "-")
+//            } else {
+//                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "+")
+//            }
+//            self.transactionList.remove(at: indexPath.row)
+//            
+//            let indexPaths = [indexPath]
+//            tableView.deleteRows(at: indexPaths, with: .automatic)
+//            
+//        }
+//        
+//        
+////      setting delete button color and edit button color
+//        deleteButton.setValue(UIColor(hex: "#FF6C71"), forKey: "titleTextColor")
+//        EditAction.setValue(UIColor(hex: "#008000"), forKey: "titleTextColor")
+//        
+////      adding the button
+//        ac.addAction(EditAction)
+//        ac.addAction(deleteButton)
+//        present(ac, animated: true)
+
+    }
+    
+    func editAlertView(_ indexPath: IndexPath) {
+        let ac = UIAlertController(title: nil, message: "Edit or Delete", preferredStyle: .alert)
+        let numberAmount = transactionList[indexPath.row].amount
+        let numberString = numberAmount.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let number = Int(numberString)
+        
+        let buttonName = "Edit"
+        
+        ac.addTextField { (textField) in
+            textField.text = "\(number ?? 0)"
+            textField.keyboardType = .numberPad // getting the num pad up
+        }
+        
+//      adding submit button functionality
+        let EditAction = UIAlertAction(title: "Edit",
+                                         style: .default) { [unowned self, ac] action in
+            
+//          This is the text entry after enter key
+            let AddedItem = ac.textFields![0]
+            
+            let numberEntered = Int(AddedItem.text!)
+            
+            currentbalanceNumber -= numberEntered ?? 0
+            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
+
+            
+//          checking if the number entered is nil or zero
+            let numEntered = Int(AddedItem.text!)
+            if numEntered != 0 || numEntered != nil {
+                self.transactionList[indexPath.row].amount = "+ \(AddedItem.text!) Rs"
+                let indexPaths = [indexPath]
+                tableView.reloadRows(at: indexPaths, with: .automatic)
+            }
+        }
+        
+        
+//      creating a cancel button
+        let deleteButton = UIAlertAction(title: "Delete",
+                                         style: .default) { _ in
+            let AddedItem = ac.textFields![0]
+            let numEntered = Int(AddedItem.text!)
+            let typeOfTransaction = self.transactionList[indexPath.row].moneySpentOrRecievedImage
+            if typeOfTransaction == "money-send" {
+                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "-")
+            } else {
+                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "+")
+            }
+            self.transactionList.remove(at: indexPath.row)
+            
+            let indexPaths = [indexPath]
+            self.tableView.deleteRows(at: indexPaths, with: .automatic)
+            
+        }
+        
+        
+//      setting delete button color and edit button color
+        deleteButton.setValue(UIColor(hex: "#FF6C71"), forKey: "titleTextColor")
+        EditAction.setValue(UIColor(hex: "#008000"), forKey: "titleTextColor")
+        
+//      adding the button
+        ac.addAction(EditAction)
+        ac.addAction(deleteButton)
+        present(ac, animated: true)
+
+    }
+    
+    func editingLabelNumber(numberEntered: Int, symbol: String) {
+        if symbol == "-" {
+            currentbalanceNumber += numberEntered
+            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
+        } else {
+            currentbalanceNumber -= numberEntered
+            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
+        }
+    }
 
 }
 
