@@ -89,6 +89,7 @@
                                         <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                         <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                                         <connections>
+                                            <outlet property="imageTransactionCategory" destination="Vqg-Kh-Kop" id="s10-Ip-4bj"/>
                                             <outlet property="imageTransactionStatus" destination="0WU-J2-1Un" id="HiB-mC-Obo"/>
                                             <outlet property="imageTransactionStatusBG" destination="97b-HN-kp1" id="JEZ-s9-aBx"/>
                                             <outlet property="labelAmountData" destination="kzC-PL-ywY" id="orT-v2-9ga"/>

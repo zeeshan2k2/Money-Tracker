@@ -16,5 +16,7 @@ class TrackerCell: UITableViewCell {
     @IBOutlet var imageTransactionStatus: UIImageView!
     
     @IBOutlet var imageTransactionStatusBG: UIImageView!
-
+    
+    @IBOutlet var imageTransactionCategory: UIImageView!
+    
 }
