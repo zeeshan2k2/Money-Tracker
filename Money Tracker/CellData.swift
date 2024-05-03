@@ -7,19 +7,19 @@
 
 import Foundation
 
-class cellData
+class cellData: NSObject, Codable
 {
     var amount: String
     var date: String
-    var moneySpentOrRecievedImage: String
-    var moneySpentOrRecievedBGImage: String
+    var imageMoneySpentOrRecieved: String
+    var imageMoneySpentOrRecievedBG: String
     var imageCategoryIcon: String
     
     init(amount: String, date: String, moneySpentOrRecievedImage: String, moneySpentOrRecievedBGImage: String, imageCategoryIcon: String) {
         self.amount = amount
         self.date = date
-        self.moneySpentOrRecievedImage = moneySpentOrRecievedImage
-        self.moneySpentOrRecievedBGImage = moneySpentOrRecievedBGImage
+        self.imageMoneySpentOrRecieved = moneySpentOrRecievedImage
+        self.imageMoneySpentOrRecievedBG = moneySpentOrRecievedBGImage
         self.imageCategoryIcon = imageCategoryIcon
     }
 
