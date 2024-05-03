@@ -43,9 +43,6 @@ class MoneyTrackerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//      to keep the app appearance light mode
-        overrideUserInterfaceStyle = .light
-        
 //      function that contains all the configuration
         configureMoneyTrackerVC()
     }
@@ -105,7 +102,7 @@ class MoneyTrackerVC: UIViewController {
         return "\(day!)-\(month!)-\(year!)"
     }
     
-//  will be use to convet int to decimal format
+//  will be use to convet number into decimal with commas
     func numberFormat(number: Int) -> String{
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -123,10 +120,13 @@ class MoneyTrackerVC: UIViewController {
         transactionList.insert(transaction, at: 0)
     }
     
+//  function which contains all the categories
     func categories(ac: UIAlertController, categoryType categories: [String], isEditButton: Bool) {
         
+//      placeholder text set to Category by default
         var placeHolderText = "Category"
         
+//      if edit button is clicked either it'll show "Other" as placeholder or selected category name
         if isEditButton == true {
             if categories.count > 5{
                 placeHolderText = "\(self.selectedCategoryForMoneySpent ?? "Other")"
@@ -181,7 +181,8 @@ class MoneyTrackerVC: UIViewController {
             textField.placeholder = "Enter Amount"
             textField.keyboardType = .numberPad // getting the num pad up
         }
-            
+        
+//      showing categories based on the button clicked
         if buttonName == "addMoney" {
             categories(ac: ac, categoryType: categoriesAddMoney, isEditButton: false)
         } else {
@@ -213,7 +214,7 @@ class MoneyTrackerVC: UIViewController {
 //      setting cancel button color
         cancelButton.setValue(UIColor(hex: "#FF6C71"), forKey: "titleTextColor")
         
-//      adding the button
+//      adding the buttons
         ac.addAction(SubmitAction)
         ac.addAction(cancelButton)
         present(ac, animated: true)
@@ -229,7 +230,7 @@ class MoneyTrackerVC: UIViewController {
 //      the formatted number
         let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered ?? 0))
         
-        //      if the number entered is 0 or nothing it returns without appending it to transactionlist
+//      if the number entered is 0 or nothing it returns without appending it to transactionlist
         if numberEntered == 0 || numberEntered == nil {
             return
         }
@@ -245,14 +246,12 @@ class MoneyTrackerVC: UIViewController {
 //      add the cell data and displaying it according to the button name given
         if buttonName == "addMoney" {
             transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient", imageCategoryIcon: "\(selectedCategoryForMoneyAdded ?? "Other")")
-            currentbalanceNumber += numberEntered ?? 0
-            let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
-            labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
+//          editing current balance label
+            editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "-")
         } else {
             transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient", imageCategoryIcon: "\(selectedCategoryForMoneySpent ?? "Other")")
-            currentbalanceNumber -= numberEntered ?? 0
-            let currentBalanceFormattedNumber = numberFormatter.string(from: NSNumber(value: currentbalanceNumber))
-            labelCurrentBalance.text = "\(currentBalanceFormattedNumber!) Rs"
+//          editing current balance label
+            editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "+")
         }
         
         addTransaction(transOne)
@@ -266,7 +265,9 @@ class MoneyTrackerVC: UIViewController {
     
     
     func editAlertView(_ indexPath: IndexPath) {
+//      creating an alert view controller
         let ac = UIAlertController(title: nil, message: "Edit or Delete", preferredStyle: .alert)
+//      selecting the number from transaction list
         let numberAmount = transactionList[indexPath.row].amount
         let numberString = numberAmount.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         let number = Int(numberString)
@@ -279,15 +280,16 @@ class MoneyTrackerVC: UIViewController {
         selectedCategoryForMoneyAdded = oldCategory
         selectedCategoryForMoneySpent = oldCategory
         
+//      setting that number in text field
         ac.addTextField { (textField) in
             textField.text = "\(number ?? 0)"
             textField.keyboardType = .numberPad // getting the num pad up
         }
         
-
+//      checking for the type of transaction
         typeOfTransaction = transactionList[indexPath.row].imageMoneySpentOrRecieved
 
-        
+//      showing categories accordinglt
         if typeOfTransaction == "money-send" {
             categories(ac: ac, categoryType: categoriesSpentMoney, isEditButton: true)
         } else {
@@ -304,8 +306,6 @@ class MoneyTrackerVC: UIViewController {
 //          checking the type of transaction by image name
             let typeOfTransaction = transactionList[indexPath.row].imageMoneySpentOrRecieved
             
-//          checking the number entered
-//            let numberEntered = Int(AddedItem.text!)
             
 //          saving previous number entered
             let previousAmountNumber = transactionList[indexPath.row].amount
@@ -317,10 +317,8 @@ class MoneyTrackerVC: UIViewController {
 //          adding or subtracting it based on waht kind of transaction it was
             if typeOfTransaction == "money-send" {
                 currentbalanceNumber += amountNumber ?? 0
-//                currentbalanceNumber += actualNumberToSubtract ?? 0
             } else {
                 currentbalanceNumber -= amountNumber ?? 0
-//                currentbalanceNumber -= actualNumberToSubtract ?? 0
             }
             
             
@@ -375,45 +373,51 @@ class MoneyTrackerVC: UIViewController {
 
     }
     
+//  function to edit label number
     func editingLabelNumber(numberEntered: Int, symbol: String) {
         if symbol == "-" {
-            //          updating current balance label
+//          updating current balance label
             currentbalanceNumber += numberEntered
-            //            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
         } else {
-            //          updating current balance label
+//          updating current balance label
             currentbalanceNumber -= numberEntered
-            //            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
         }
         let currentBalanceFormatted = numberFormat(number: currentbalanceNumber)
-        labelCurrentBalance.text = "\(currentBalanceFormatted) Rs"
+        labelCurrentBalance.text = "\(currentBalanceFormatted) Rs  "
     }
 //  updating row after updating the values
     func updatingRow(transactionType: String, AddedItem: UITextField, numEntered: Int, indexPath: IndexPath) {
         let addedItemNumber = Int(AddedItem.text!) ?? 0
         let number = numberFormat(number: addedItemNumber)
+        let indexPaths = [indexPath]
         if transactionType == "money-send" {
-            currentbalanceNumber -= numEntered
-//            self.transactionList[indexPath.row].amount = "- \(AddedItem.text!) Rs"
+//          editing label number
+            editingLabelNumber(numberEntered: numEntered, symbol: "+")
             self.transactionList[indexPath.row].amount = "- \(number) Rs"
-            let indexPaths = [indexPath]
-            //      setting label to updated value
-            let labelNumberFormatted = numberFormat(number: currentbalanceNumber)
-//            labelCurrentBalance.text = "\(currentbalanceNumber) Rs"
-            labelCurrentBalance.text = "\(labelNumberFormatted) Rs"
             transactionList[indexPath.row].imageCategoryIcon = selectedCategoryForMoneySpent ?? "Other"
-            tableView.reloadRows(at: indexPaths, with: .automatic)
         } else {
-            currentbalanceNumber += numEntered
-//            self.transactionList[indexPath.row].amount = "+ \(AddedItem.text!) Rs"
+//          editing label number
+            editingLabelNumber(numberEntered: numEntered, symbol: "-")
             self.transactionList[indexPath.row].amount = "+ \(number) Rs"
-            let indexPaths = [indexPath]
-            //      setting label to updated value
-            let labelNumberFormatted = numberFormat(number: currentbalanceNumber)
-            labelCurrentBalance.text = "\(labelNumberFormatted) Rs"
             transactionList[indexPath.row].imageCategoryIcon = selectedCategoryForMoneyAdded ?? "Other"
-            tableView.reloadRows(at: indexPaths, with: .automatic)
-        }
+          }
+        tableView.reloadRows(at: indexPaths, with: .automatic)
+    }
+    
+//  method for table view cell for row at
+    func cellConfiguration(cell: TrackerCell, indexPath: IndexPath) -> UITableViewCell {
+//        setting data of cell to display
+        cell.labelAmountData.text = "\(transactionList[indexPath.row].amount)"
+        cell.labelDateData.text = "\(transactionList[indexPath.row].date)"
+        cell.imageTransactionStatus.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecieved)
+        cell.imageTransactionStatusBG.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecievedBG)
+        cell.imageTransactionCategory.image = UIImage(named: transactionList[indexPath.row].imageCategoryIcon)
+        
+//      setting background color to transparent such that there remains a space between two cells
+        cell.layer.backgroundColor = UIColor.clear.cgColor
+//      setting background imgage radius of the cell such that uniformity is obtained and it looks like a cell
+        cell.imageTransactionStatusBG.layer.cornerRadius = 15
+        return cell
     }
     
 }
@@ -439,18 +443,9 @@ extension MoneyTrackerVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //      selecting the cell with the identifier
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TrackerCell
-//      setting data of cell to display
-        cell.labelAmountData.text = "\(transactionList[indexPath.row].amount)"
-        cell.labelDateData.text = "\(transactionList[indexPath.row].date)"
-        cell.imageTransactionStatus.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecieved)
-        cell.imageTransactionStatusBG.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecievedBG)
-        cell.imageTransactionCategory.image = UIImage(named: transactionList[indexPath.row].imageCategoryIcon)
-        
-//      setting background color to transparent such that there remains a space between two cells
-        cell.layer.backgroundColor = UIColor.clear.cgColor
-//      setting background imgage radius of the cell such that uniformity is obtained and it looks like a cell
-        cell.imageTransactionStatusBG.layer.cornerRadius = 15
-        return cell
+
+//      calling a function containing all cell configuration
+        return cellConfiguration(cell: cell, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -463,12 +458,12 @@ extension MoneyTrackerVC {
 //  add money button
     @IBAction func addMoney(_ sender: Any) {
 //      function to check which button is tapped
-        buttonTapped(message: "Add Money", title: "Add", buttonName: "addMoney")
+        buttonTapped(message: "Income", title: "Add", buttonName: "addMoney")
     }
     
 //  money spent button
     @IBAction func spentMoney(_ sender: Any) {
 //      function to check which button is tapped
-        buttonTapped(message: "Money Spent", title: "Spent", buttonName: "spentMoney")
+        buttonTapped(message: "Expense", title: "Spent", buttonName: "spentMoney")
     }
 }
