@@ -56,12 +56,14 @@ class MoneyTrackerVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-//      applying border radius function
-        applyBorderRadius()
+//      applying border radius
+        imageStackViewBG.layer.cornerRadius = 55
+        imageMoneyAddAndSpentBG.layer.cornerRadius = 30
+        labelCurrentBalance?.layer.cornerRadius = 8
+        labelCurrentBalance?.layer.masksToBounds = true
         
 //      initially current balance label displays 0
         labelCurrentBalance.text = "0 Rs"
-        
         
 //      setting background image for the UITableView
         let backgroundImage = UIImage(named: "Transaction History BG")
@@ -69,16 +71,6 @@ class MoneyTrackerVC: UIViewController {
         imageView.contentMode = .scaleAspectFill
         self.tableView.backgroundView = imageView
         tableView.layer.cornerRadius = 46
-    }
-    
-    
-//  border radius function for the money spent or money added button background image
-    func applyBorderRadius() {
-        imageStackViewBG.layer.cornerRadius = 55
-        imageMoneyAddAndSpentBG.layer.cornerRadius = 30
-        labelCurrentBalance?.layer.cornerRadius = 8
-        labelCurrentBalance?.layer.masksToBounds = true
-        
     }
     
     
@@ -103,7 +95,7 @@ class MoneyTrackerVC: UIViewController {
     }
     
 //  will be use to convet number into decimal with commas
-    func numberFormat(number: Int) -> String{
+    func numberFormat(number: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
