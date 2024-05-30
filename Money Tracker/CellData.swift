@@ -7,6 +7,7 @@
 
 import Foundation
 
+//all the cell data
 class cellData: NSObject, Codable
 {
     var amount: String

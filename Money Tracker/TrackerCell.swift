@@ -8,7 +8,7 @@
 import UIKit
 
 class TrackerCell: UITableViewCell {
-
+// all the outlets to display data
     @IBOutlet var labelAmountData: UILabel!
     
     @IBOutlet var labelDateData: UILabel!
