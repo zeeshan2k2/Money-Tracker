@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Transaction History BG.png" translatesAutoresizingMaskIntoConstraints="NO" id="pkQ-vn-POJ">
-                                <rect key="frame" x="0.0" y="209" width="393" height="643"/>
+                                <rect key="frame" x="0.0" y="268" width="393" height="584"/>
                                 <color key="backgroundColor" cyan="0.53095769557823125" magenta="0.24471194727891157" yellow="0.51732568027210879" black="0.46434563758389263" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" separatorInsetReference="fromAutomaticInsets" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-ff-qBu">
-                                <rect key="frame" x="0.0" y="210" width="393" height="647"/>
+                                <rect key="frame" x="0.0" y="269" width="393" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -103,20 +103,20 @@
                                 <rect key="frame" x="103" y="780" width="187" height="87"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1046 Rs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RET-YI-a94">
-                                <rect key="frame" x="55" y="124.66666666666667" width="283" height="50.333333333333329"/>
+                                <rect key="frame" x="55" y="183.66666666666666" width="283" height="50.333333333333343"/>
                                 <color key="backgroundColor" red="0.96470588445663452" green="0.96470588445663452" blue="0.96470588445663452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="43"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45L-tc-hd0">
-                                <rect key="frame" x="135.33333333333334" y="89.333333333333329" width="122.66666666666666" height="20.333333333333329"/>
+                                <rect key="frame" x="135.33333333333334" y="148.33333333333334" width="122.66666666666666" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                                                           Transaction Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwU-Ll-DWY">
-                                <rect key="frame" x="0.0" y="192" width="393" height="17"/>
+                                <rect key="frame" x="0.0" y="251" width="393" height="17"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cyan="0.53095769559999995" magenta="0.24471194730000001" yellow="0.51732568030000003" black="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
@@ -182,11 +182,10 @@
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mD6-hq-7Cw"/>
                             <constraint firstItem="45L-tc-hd0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="px3-99-CJA"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="saG-7P-BDE"/>
-                            <constraint firstAttribute="bottom" secondItem="IMP-ff-qBu" secondAttribute="bottom" id="seF-0C-QE5"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sgR-JX-WEL"/>
                             <constraint firstItem="pkQ-vn-POJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tmr-TR-Nh6"/>
                             <constraint firstItem="IMP-ff-qBu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uNM-Br-aN3"/>
-                            <constraint firstAttribute="bottom" secondItem="IMP-ff-qBu" secondAttribute="bottom" constant="-5" id="xc7-k5-1x6"/>
+                            <constraint firstAttribute="bottom" secondItem="IMP-ff-qBu" secondAttribute="bottom" constant="-40" id="xc7-k5-1x6"/>
                             <constraint firstAttribute="trailing" secondItem="IMP-ff-qBu" secondAttribute="trailing" id="ypl-4a-lJR"/>
                         </constraints>
                     </view>
