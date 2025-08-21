@@ -34,7 +34,7 @@
 		C11D41B92BE2A3BC0024DE53 /* money-send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-send.png"; sourceTree = "<group>"; };
 		C11D41BA2BE2A3BC0024DE53 /* money-recieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-recieve.png"; sourceTree = "<group>"; };
 		C167E0652BBCB00200065336 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
-		C18D39A22BE26A0000660ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Money Tracker/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		C18D39A22BE26A0000660ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../Money Tracker/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		C1C443D52BB6C95600A3C1DF /* Money Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,24 +74,72 @@
 		C1C443D72BB6C95600A3C1DF /* Money Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				C1F227D52E579F80007F74E4 /* Core */,
+				C1F227D72E579F8F007F74E4 /* Storyboard */,
+				C1F227D62E579F8D007F74E4 /* ViewController */,
+				C1F227D82E579F8F007F74E4 /* Data */,
+				C1F227DA2E579FF1007F74E4 /* Extensions */,
+				C1F227D92E579FDD007F74E4 /* Assets */,
+				C1C443E62BB6C95700A3C1DF /* Info.plist */,
+			);
+			path = "Money Tracker";
+			sourceTree = "<group>";
+		};
+		C1F227D52E579F80007F74E4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
+				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C1F227D62E579F8D007F74E4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C1F227D72E579F8F007F74E4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C1C443E32BB6C95700A3C1DF /* LaunchScreen.storyboard */,
+				C18D39A12BE26A0000660ADA /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		C1F227D82E579F8F007F74E4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C167E0652BBCB00200065336 /* CellData.swift */,
+				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C1F227D92E579FDD007F74E4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C1C443E12BB6C95700A3C1DF /* Assets.xcassets */,
+				C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */,
 				C11D41BA2BE2A3BC0024DE53 /* money-recieve.png */,
 				C11D41B92BE2A3BC0024DE53 /* money-send.png */,
 				C11D41B52BE2A3850024DE53 /* Red Gradient.png */,
 				C11D41B62BE2A3850024DE53 /* Green Gradient.png */,
-				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
-				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
-				C101CAD52BE124FC00EC52A9 /* ConfigureColor.swift */,
-				C167E0652BBCB00200065336 /* CellData.swift */,
-				C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */,
-				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
-				C18D39A12BE26A0000660ADA /* Main.storyboard */,
-				C11C3D372BB6EAB70010E8A3 /* Transaction History BG.png */,
 				C1C443F82BB6E82500A3C1DF /* Grade Grey.png */,
-				C1C443E12BB6C95700A3C1DF /* Assets.xcassets */,
-				C1C443E32BB6C95700A3C1DF /* LaunchScreen.storyboard */,
-				C1C443E62BB6C95700A3C1DF /* Info.plist */,
 			);
-			path = "Money Tracker";
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C1F227DA2E579FF1007F74E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C101CAD52BE124FC00EC52A9 /* ConfigureColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
