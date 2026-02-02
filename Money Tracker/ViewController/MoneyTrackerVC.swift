@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import SwiftData
 
 
 class MoneyTrackerVC: UIViewController {
@@ -15,7 +16,7 @@ class MoneyTrackerVC: UIViewController {
     @IBOutlet var tableView: UITableView!
     
 //  class used to store data about cells
-    var transactionList = [cellData]()
+    var transactionList = [CellData]()
     
 //  current balance variable
     @IBOutlet var labelCurrentBalance: UILabel!
@@ -28,12 +29,14 @@ class MoneyTrackerVC: UIViewController {
 //  money spent or recieved buttons background Image
     @IBOutlet var imageMoneyAddAndSpentBG: UIImageView!
     
+//    Swift Data Properties
+    private var modelContext: ModelContext?
+    
 //  category
     var selectedCategoryForMoneySpent: String?
     
 //  category
     var selectedCategoryForMoneyAdded: String?
-    
     
 //  setting array for spent money category and add money category
     let categoriesSpentMoney =  ["Food", "Groceries", "Travelling", "Vehicle", "Education", "Household", "Socialising", "Clothes", "Mobile", "Other"]
@@ -43,8 +46,38 @@ class MoneyTrackerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        modelContext = appDelegate.modelContainer.map { ModelContext($0) }
+        
+//      to load data
+        loadData()
+        
 //      function that contains all the configuration
         configureMoneyTrackerVC()
+    }
+    
+    func loadData() {
+        if let modelContext = modelContext {
+            let descriptor = FetchDescriptor<CellData>()
+            transactionList = (try? modelContext.fetch(descriptor)) ?? []
+            
+            // Recalculate balance from saved data
+            currentbalanceNumber = 0
+            for transaction in transactionList {
+                let numberString = transaction.amount.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                let number = Int(numberString) ?? 0
+                
+                print("This is the number \(number)")
+                if transaction.imageMoneySpentOrRecieved == "money-recieve" {
+                    currentbalanceNumber += number
+                } else {
+                    currentbalanceNumber -= number
+                }
+            }
+            let currentBalanceFormatted = numberFormat(number: currentbalanceNumber)
+            labelCurrentBalance.text = "\(currentBalanceFormatted)"
+        }
+        
     }
     
 //    a function containing all element code
@@ -61,10 +94,7 @@ class MoneyTrackerVC: UIViewController {
         imageMoneyAddAndSpentBG.layer.cornerRadius = 30
         labelCurrentBalance?.layer.cornerRadius = 8
         labelCurrentBalance?.layer.masksToBounds = true
-        
-//      initially current balance label displays 0
-        labelCurrentBalance.text = "0 Rs"
-        
+              
 //      setting background image for the UITableView
         let backgroundImage = UIImage(named: "Transaction History BG")
         let imageView = UIImageView(image: backgroundImage)
@@ -108,17 +138,17 @@ class MoneyTrackerVC: UIViewController {
     
     
 //  adding the transaction data to the transactionList
-    func addTransaction(_ transaction: cellData) {
+    func addTransaction(_ transaction: CellData) {
         transactionList.insert(transaction, at: 0)
     }
     
 //  function which contains all the categories
     func categories(ac: UIAlertController, categoryType categories: [String], isEditButton: Bool) {
         
-//      placeholder text set to Category by default
+        //      placeholder text set to Category by default
         var placeHolderText = "Category"
         
-//      if edit button is clicked either it'll show "Other" as placeholder or selected category name
+        //      if edit button is clicked either it'll show "Other" as placeholder or selected category name
         if isEditButton == true {
             if categories.count > 5{
                 placeHolderText = "\(self.selectedCategoryForMoneySpent ?? "Other")"
@@ -128,11 +158,11 @@ class MoneyTrackerVC: UIViewController {
         }
         
         
-//        if isEditButton != true {
         ac.addTextField(configurationHandler: { textField in
             textField.placeholder = "\(placeHolderText)"
+            textField.textColor = .black
+            
             let button = UIButton(type: .custom)
-            button.setTitle("Select", for: .normal)
             
             // Create a menu with categories
             let categoriesMenu = UIMenu(title: "Categories", children: categories.map { category in
@@ -140,20 +170,29 @@ class MoneyTrackerVC: UIViewController {
                     if categories.count > 5 {
                         self.selectedCategoryForMoneySpent = category
                         textField.text = category
+                        textField.textColor = .black
                     } else {
                         self.selectedCategoryForMoneyAdded = category
                         textField.text = category
+                        textField.textColor = .black
                     }
                 }
             })
             
             button.menu = categoriesMenu
             button.showsMenuAsPrimaryAction = true
-            textField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
-            textField.rightView?.tintColor = .black
+            button.backgroundColor = .clear  // Make button transparent
+            
+            // Add chevron icon
+            let chevronImage = UIImageView(image: UIImage(systemName: "chevron.down"))
+            chevronImage.tintColor = .black
+            textField.rightView = chevronImage
             textField.rightViewMode = .always
             textField.isUserInteractionEnabled = false
+            
+            // ADD BUTTON FIRST, THEN SET FRAME
             textField.superview?.addSubview(button)
+            textField.superview?.bringSubviewToFront(button)  // Bring to front
             ac.view.layoutIfNeeded()
             button.frame = textField.superview?.bounds ?? .zero
         })
@@ -233,20 +272,24 @@ class MoneyTrackerVC: UIViewController {
         
 //        let lastIndex = transactionList.count
         
-        var transOne: cellData
+        var transOne: CellData
         
 //      add the cell data and displaying it according to the button name given
         if buttonName == "addMoney" {
-            transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient", imageCategoryIcon: "\(selectedCategoryForMoneyAdded ?? "Other")")
+            transOne = CellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient", imageCategoryIcon: "\(selectedCategoryForMoneyAdded ?? "Other")")
 //          editing current balance label
             editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "-")
         } else {
-            transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient", imageCategoryIcon: "\(selectedCategoryForMoneySpent ?? "Other")")
+            transOne = CellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient", imageCategoryIcon: "\(selectedCategoryForMoneySpent ?? "Other")")
 //          editing current balance label
             editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "+")
         }
         
         addTransaction(transOne)
+        
+        // saving data
+        modelContext?.insert(transOne)
+        try? modelContext?.save()
         
         // adding new row at top such that latest result remains on top
         let indexPath = IndexPath(row: 0, section: 0)
@@ -346,11 +389,16 @@ class MoneyTrackerVC: UIViewController {
             } else {
                 self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "+")
             }
+            
+            let transactionToDelete = self.transactionList[indexPath.row]
+            
+            self.modelContext?.delete(transactionToDelete)
+            try? self.modelContext?.save()
+            
             self.transactionList.remove(at: indexPath.row)
             
             let indexPaths = [indexPath]
             self.tableView.deleteRows(at: indexPaths, with: .automatic)
-            
         }
         
         
@@ -393,6 +441,7 @@ class MoneyTrackerVC: UIViewController {
             self.transactionList[indexPath.row].amount = "+ \(number) Rs"
             transactionList[indexPath.row].imageCategoryIcon = selectedCategoryForMoneyAdded ?? "Other"
           }
+        try? modelContext?.save()
         tableView.reloadRows(at: indexPaths, with: .automatic)
     }
     

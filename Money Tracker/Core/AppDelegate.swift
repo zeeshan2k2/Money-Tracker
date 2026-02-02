@@ -6,12 +6,21 @@
 //
 
 import UIKit
+import SwiftData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    // creating a model container as a shared property
+    var modelContainer: ModelContainer!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        do {
+            modelContainer = try ModelContainer(for: CellData.self)
+        } catch {
+            print("Failed to create a model container \(error.localizedDescription)")
+        }
         return true
     }
 

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftData
 
 //all the cell data
-class cellData: NSObject, Codable
-{
+@Model
+class CellData {
     var amount: String
     var date: String
     var imageMoneySpentOrRecieved: String
@@ -23,5 +24,4 @@ class cellData: NSObject, Codable
         self.imageMoneySpentOrRecievedBG = moneySpentOrRecievedBGImage
         self.imageCategoryIcon = imageCategoryIcon
     }
-
 }
