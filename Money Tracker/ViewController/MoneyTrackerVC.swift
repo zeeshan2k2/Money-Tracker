@@ -115,10 +115,10 @@ class MoneyTrackerVC: UIViewController {
 //  function which contains all the categories
     func categories(ac: UIAlertController, categoryType categories: [String], isEditButton: Bool) {
         
-//      placeholder text set to Category by default
+        //      placeholder text set to Category by default
         var placeHolderText = "Category"
         
-//      if edit button is clicked either it'll show "Other" as placeholder or selected category name
+        //      if edit button is clicked either it'll show "Other" as placeholder or selected category name
         if isEditButton == true {
             if categories.count > 5{
                 placeHolderText = "\(self.selectedCategoryForMoneySpent ?? "Other")"
@@ -128,11 +128,11 @@ class MoneyTrackerVC: UIViewController {
         }
         
         
-//        if isEditButton != true {
         ac.addTextField(configurationHandler: { textField in
             textField.placeholder = "\(placeHolderText)"
+            textField.textColor = .black
+            
             let button = UIButton(type: .custom)
-            button.setTitle("Select", for: .normal)
             
             // Create a menu with categories
             let categoriesMenu = UIMenu(title: "Categories", children: categories.map { category in
@@ -140,20 +140,29 @@ class MoneyTrackerVC: UIViewController {
                     if categories.count > 5 {
                         self.selectedCategoryForMoneySpent = category
                         textField.text = category
+                        textField.textColor = .black
                     } else {
                         self.selectedCategoryForMoneyAdded = category
                         textField.text = category
+                        textField.textColor = .black
                     }
                 }
             })
             
             button.menu = categoriesMenu
             button.showsMenuAsPrimaryAction = true
-            textField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
-            textField.rightView?.tintColor = .black
+            button.backgroundColor = .clear  // Make button transparent
+            
+            // Add chevron icon
+            let chevronImage = UIImageView(image: UIImage(systemName: "chevron.down"))
+            chevronImage.tintColor = .black
+            textField.rightView = chevronImage
             textField.rightViewMode = .always
             textField.isUserInteractionEnabled = false
+            
+            // ADD BUTTON FIRST, THEN SET FRAME
             textField.superview?.addSubview(button)
+            textField.superview?.bringSubviewToFront(button)  // Bring to front
             ac.view.layoutIfNeeded()
             button.frame = textField.superview?.bounds ?? .zero
         })
