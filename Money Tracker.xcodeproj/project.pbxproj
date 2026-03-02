@@ -15,7 +15,10 @@
 		C11D41B82BE2A3850024DE53 /* Green Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = C11D41B62BE2A3850024DE53 /* Green Gradient.png */; };
 		C11D41BB2BE2A3BC0024DE53 /* money-send.png in Resources */ = {isa = PBXBuildFile; fileRef = C11D41B92BE2A3BC0024DE53 /* money-send.png */; };
 		C11D41BC2BE2A3BC0024DE53 /* money-recieve.png in Resources */ = {isa = PBXBuildFile; fileRef = C11D41BA2BE2A3BC0024DE53 /* money-recieve.png */; };
-		C167E0662BBCB00200065336 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0652BBCB00200065336 /* CellData.swift */; };
+		C13D40792F564E46009771D2 /* MoneyTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C13D40772F564E46009771D2 /* MoneyTracker.xcdatamodeld */; };
+		C13D407B2F565024009771D2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D407A2F565023009771D2 /* CoreDataStack.swift */; };
+		C13D407D2F5653BC009771D2 /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D407C2F5653BB009771D2 /* TransactionRepository.swift */; };
+		C167E0662BBCB00200065336 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167E0652BBCB00200065336 /* Transaction.swift */; };
 		C18D39A32BE26A0000660ADA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C18D39A12BE26A0000660ADA /* Main.storyboard */; };
 		C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */; };
 		C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */; };
@@ -33,7 +36,10 @@
 		C11D41B62BE2A3850024DE53 /* Green Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Gradient.png"; sourceTree = "<group>"; };
 		C11D41B92BE2A3BC0024DE53 /* money-send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-send.png"; sourceTree = "<group>"; };
 		C11D41BA2BE2A3BC0024DE53 /* money-recieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-recieve.png"; sourceTree = "<group>"; };
-		C167E0652BBCB00200065336 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		C13D40782F564E46009771D2 /* MoneyTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoneyTracker.xcdatamodel; sourceTree = "<group>"; };
+		C13D407A2F565023009771D2 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C13D407C2F5653BB009771D2 /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
+		C167E0652BBCB00200065336 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		C18D39A22BE26A0000660ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../Money Tracker/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		C1C443D52BB6C95600A3C1DF /* Money Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Money Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +96,8 @@
 			children = (
 				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
 				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
+				C13D407A2F565023009771D2 /* CoreDataStack.swift */,
+				C13D40772F564E46009771D2 /* MoneyTracker.xcdatamodeld */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -114,7 +122,8 @@
 		C1F227D82E579F8F007F74E4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C167E0652BBCB00200065336 /* CellData.swift */,
+				C167E0652BBCB00200065336 /* Transaction.swift */,
+				C13D407C2F5653BB009771D2 /* TransactionRepository.swift */,
 				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
 			);
 			path = Data;
@@ -219,12 +228,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C13D40792F564E46009771D2 /* MoneyTracker.xcdatamodeld in Sources */,
 				C101CAD72BE124FC00EC52A9 /* TrackerCell.swift in Sources */,
 				C101CAD62BE124FC00EC52A9 /* MoneyTrackerVC.swift in Sources */,
 				C101CAD82BE124FC00EC52A9 /* ConfigureColor.swift in Sources */,
 				C1C443D92BB6C95600A3C1DF /* AppDelegate.swift in Sources */,
+				C13D407D2F5653BC009771D2 /* TransactionRepository.swift in Sources */,
 				C1C443DB2BB6C95600A3C1DF /* SceneDelegate.swift in Sources */,
-				C167E0662BBCB00200065336 /* CellData.swift in Sources */,
+				C167E0662BBCB00200065336 /* Transaction.swift in Sources */,
+				C13D407B2F565024009771D2 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +463,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C13D40772F564E46009771D2 /* MoneyTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C13D40782F564E46009771D2 /* MoneyTracker.xcdatamodel */,
+			);
+			currentVersion = C13D40782F564E46009771D2 /* MoneyTracker.xcdatamodel */;
+			path = MoneyTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C1C443CD2BB6C95600A3C1DF /* Project object */;
 }

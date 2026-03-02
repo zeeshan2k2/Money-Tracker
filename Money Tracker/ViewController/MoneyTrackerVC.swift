@@ -15,12 +15,14 @@ class MoneyTrackerVC: UIViewController {
     @IBOutlet var tableView: UITableView!
     
 //  class used to store data about cells
-    var transactionList = [cellData]()
+    private var transactions: [Transaction] = []
+
+    private let repository = TransactionRepository(
+        context: CoreDataStack.shared.context
+    )
     
 //  current balance variable
     @IBOutlet var labelCurrentBalance: UILabel!
-//  variable to store the current balance number
-    var currentbalanceNumber = 0
     
 //  UITableView Backgroung Image
     @IBOutlet var imageStackViewBG: UIImageView!
@@ -45,6 +47,53 @@ class MoneyTrackerVC: UIViewController {
         
 //      function that contains all the configuration
         configureMoneyTrackerVC()
+        
+//      loading transactions from CoreData
+        loadTransactions()
+    }
+    
+    private func loadTransactions() {
+        do {
+            transactions = try repository.fetchAll()
+            updateBalance()
+            tableView.reloadData()
+        } catch {
+            print("Failed to load:", error)
+        }
+    }
+    
+    private func updateBalance() {
+        let balance = transactions.reduce(0) { result, transaction in
+            switch transaction.type {
+            case .income:
+                return result + Int(transaction.amount)
+            case .expense:
+                return result - Int(transaction.amount)
+            }
+        }
+
+        labelCurrentBalance.text = "\(numberFormat(number: balance)) Rs"
+    }
+    
+    private func updateTransaction(oldTransaction: Transaction,
+                                   newAmount: Double) {
+        
+        let updatedTransaction = Transaction(
+            id: oldTransaction.id,
+            amount: newAmount,
+            date: oldTransaction.date,
+            type: oldTransaction.type,
+            category: oldTransaction.type == .income
+                ? (selectedCategoryForMoneyAdded ?? "Other")
+                : (selectedCategoryForMoneySpent ?? "Other")
+        )
+        
+        do {
+            try repository.update(updatedTransaction)
+            loadTransactions()
+        } catch {
+            print("Update failed:", error)
+        }
     }
     
 //    a function containing all element code
@@ -104,12 +153,6 @@ class MoneyTrackerVC: UIViewController {
         let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered)) ?? " "
         
         return numberFormatted
-    }
-    
-    
-//  adding the transaction data to the transactionList
-    func addTransaction(_ transaction: cellData) {
-        transactionList.insert(transaction, at: 0)
     }
     
 //  function which contains all the categories
@@ -214,201 +257,114 @@ class MoneyTrackerVC: UIViewController {
     
     
     func addMoneyOrSpentMoneyImplementation(_ item: String, buttonName: String) {
-//      Using this to Format the number and add commas
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
         
-        let numberEntered = Int(item)
-//      the formatted number
-        let numberFormatted = numberFormatter.string(from: NSNumber(value: numberEntered ?? 0))
-        
-//      if the number entered is 0 or nothing it returns without appending it to transactionlist
-        if numberEntered == 0 || numberEntered == nil {
+        guard let numberEntered = Double(item),
+              numberEntered > 0 else {
             return
         }
-             
         
-        // current date store in this variable
-        let currentDate = getCurrentDate()
+        let transaction = Transaction(
+            id: UUID(),
+            amount: numberEntered,
+            date: Date(),
+            type: buttonName == "addMoney" ? .income : .expense,
+            category: buttonName == "addMoney"
+                ? (selectedCategoryForMoneyAdded ?? "Other")
+                : (selectedCategoryForMoneySpent ?? "Other")
+        )
         
-//        let lastIndex = transactionList.count
-        
-        var transOne: cellData
-        
-//      add the cell data and displaying it according to the button name given
-        if buttonName == "addMoney" {
-            transOne = cellData(amount: "+ \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-recieve", moneySpentOrRecievedBGImage: "Green Gradient", imageCategoryIcon: "\(selectedCategoryForMoneyAdded ?? "Other")")
-//          editing current balance label
-            editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "-")
-        } else {
-            transOne = cellData(amount: "- \(numberFormatted!) Rs", date: "\(currentDate)", moneySpentOrRecievedImage: "money-send", moneySpentOrRecievedBGImage: "Red Gradient", imageCategoryIcon: "\(selectedCategoryForMoneySpent ?? "Other")")
-//          editing current balance label
-            editingLabelNumber(numberEntered: numberEntered ?? 0, symbol: "+")
+        do {
+            try repository.save(transaction)
+            loadTransactions()
+        } catch {
+            print("Failed to save:", error)
         }
-        
-        addTransaction(transOne)
-        
-        // adding new row at top such that latest result remains on top
-        let indexPath = IndexPath(row: 0, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-        return
     }
     
     
     func editAlertView(_ indexPath: IndexPath) {
-//      creating an alert view controller
-        let ac = UIAlertController(title: nil, message: "Edit or Delete", preferredStyle: .alert)
-//      selecting the number from transaction list
-        let numberAmount = transactionList[indexPath.row].amount
-        let numberString = numberAmount.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        let number = Int(numberString)
-        var typeOfTransaction: String?
         
-//      setting previous category in the category button
-        let oldCategory = transactionList[indexPath.row].imageCategoryIcon
+        let transaction = transactions[indexPath.row]
         
-//      setting category and displaying it in placeholder
-        selectedCategoryForMoneyAdded = oldCategory
-        selectedCategoryForMoneySpent = oldCategory
+        let ac = UIAlertController(title: nil,
+                                   message: "Edit or Delete",
+                                   preferredStyle: .alert)
         
-//      setting that number in text field
-        ac.addTextField { (textField) in
-            textField.text = "\(number ?? 0)"
-            textField.keyboardType = .numberPad // getting the num pad up
+        ac.addTextField { textField in
+            textField.text = String(Int(transaction.amount))
+            textField.keyboardType = .numberPad
         }
         
-//      checking for the type of transaction
-        typeOfTransaction = transactionList[indexPath.row].imageMoneySpentOrRecieved
-
-//      showing categories accordinglt
-        if typeOfTransaction == "money-send" {
+        // Set previous category
+        selectedCategoryForMoneyAdded = transaction.category
+        selectedCategoryForMoneySpent = transaction.category
+        
+        if transaction.type == .expense {
             categories(ac: ac, categoryType: categoriesSpentMoney, isEditButton: true)
         } else {
             categories(ac: ac, categoryType: categoriesAddMoney, isEditButton: true)
         }
         
-//      adding submit button functionality
-        let EditAction = UIAlertAction(title: "Edit",
-                                         style: .default) { [unowned self, ac] action in
-            
-//          This is the text entry after enter key
-            let AddedItem = ac.textFields![0]
-
-//          checking the type of transaction by image name
-            let typeOfTransaction = transactionList[indexPath.row].imageMoneySpentOrRecieved
-            
-            
-//          saving previous number entered
-            let previousAmountNumber = transactionList[indexPath.row].amount
-            let numberAmountSplit = previousAmountNumber.split(separator: " ")
-//          removing the comma from the number
-            let numberWithoutComma = numberAmountSplit[1].replacingOccurrences(of: ",", with: "")
-            let amountNumber = Int(numberWithoutComma)
-
-//          adding or subtracting it based on waht kind of transaction it was
-            if typeOfTransaction == "money-send" {
-                currentbalanceNumber += amountNumber ?? 0
-            } else {
-                currentbalanceNumber -= amountNumber ?? 0
+        let editAction = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
+            guard let self = self,
+                  let text = ac.textFields?.first?.text,
+                  let newAmount = Double(text),
+                  newAmount > 0 else {
+                return
             }
             
+            self.updateTransaction(
+                oldTransaction: transaction,
+                newAmount: newAmount
+            )
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
             
-            
-//          checking if the number entered is nil or zero
-            let numEntered = Int(AddedItem.text!)
-            if typeOfTransaction == "money-send" {
-                if numEntered != 0 || numEntered != nil {
-//                  if the number entered is anything other than nil or zero perform operation and update the table
-//                  view cell
-//                  updating the current number variable
-                    updatingRow(transactionType: typeOfTransaction, AddedItem: AddedItem, numEntered: numEntered ?? 0, indexPath: indexPath)
-                }
-            } else {
-                if numEntered != 0 || numEntered != nil {
-//                  if the number entered is anything other than nil or zero perform operation and update the table
-//                  view cell
-//                  updating the current number variable
-                    updatingRow(transactionType: typeOfTransaction, AddedItem: AddedItem, numEntered: numEntered ?? 0, indexPath: indexPath)
-                }
+            do {
+                try self.repository.delete(id: transaction.id)
+                self.loadTransactions()
+            } catch {
+                print("Delete failed:", error)
             }
         }
         
+        ac.addAction(editAction)
+        ac.addAction(deleteAction)
         
-//      creating a Delete button
-        let deleteButton = UIAlertAction(title: "Delete",
-                                         style: .default) { _ in
-            let AddedItem = ac.textFields![0]
-            let numEntered = Int(AddedItem.text!)
-            let typeOfTransaction = self.transactionList[indexPath.row].imageMoneySpentOrRecieved
-            if typeOfTransaction == "money-send" {
-                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "-")
-            } else {
-                self.editingLabelNumber(numberEntered: numEntered ?? 0, symbol: "+")
-            }
-            self.transactionList.remove(at: indexPath.row)
-            
-            let indexPaths = [indexPath]
-            self.tableView.deleteRows(at: indexPaths, with: .automatic)
-            
-        }
-        
-        
-//      setting delete button color and edit button color
-        deleteButton.setValue(UIColor(hex: "#FF6C71"), forKey: "titleTextColor")
-        EditAction.setValue(UIColor(hex: "#008000"), forKey: "titleTextColor")
-        
-//      adding the button
-        ac.addAction(EditAction)
-        ac.addAction(deleteButton)
         present(ac, animated: true)
-
     }
     
-//  function to edit label number
-    func editingLabelNumber(numberEntered: Int, symbol: String) {
-        if symbol == "-" {
-//          updating current balance label
-            currentbalanceNumber += numberEntered
-        } else {
-//          updating current balance label
-            currentbalanceNumber -= numberEntered
-        }
-        let currentBalanceFormatted = numberFormat(number: currentbalanceNumber)
-        labelCurrentBalance.text = "\(currentBalanceFormatted) Rs  "
-    }
-//  updating row after updating the values
-    func updatingRow(transactionType: String, AddedItem: UITextField, numEntered: Int, indexPath: IndexPath) {
-        let addedItemNumber = Int(AddedItem.text!) ?? 0
-        let number = numberFormat(number: addedItemNumber)
-        let indexPaths = [indexPath]
-        if transactionType == "money-send" {
-//          editing label number
-            editingLabelNumber(numberEntered: numEntered, symbol: "+")
-            self.transactionList[indexPath.row].amount = "- \(number) Rs"
-            transactionList[indexPath.row].imageCategoryIcon = selectedCategoryForMoneySpent ?? "Other"
-        } else {
-//          editing label number
-            editingLabelNumber(numberEntered: numEntered, symbol: "-")
-            self.transactionList[indexPath.row].amount = "+ \(number) Rs"
-            transactionList[indexPath.row].imageCategoryIcon = selectedCategoryForMoneyAdded ?? "Other"
-          }
-        tableView.reloadRows(at: indexPaths, with: .automatic)
-    }
-    
-//  method for table view cell for row at
     func cellConfiguration(cell: TrackerCell, indexPath: IndexPath) -> UITableViewCell {
-//        setting data of cell to display
-        cell.labelAmountData.text = "\(transactionList[indexPath.row].amount)"
-        cell.labelDateData.text = "\(transactionList[indexPath.row].date)"
-        cell.imageTransactionStatus.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecieved)
-        cell.imageTransactionStatusBG.image = UIImage(named: transactionList[indexPath.row].imageMoneySpentOrRecievedBG)
-        cell.imageTransactionCategory.image = UIImage(named: transactionList[indexPath.row].imageCategoryIcon)
         
-//      setting background color to transparent such that there remains a space between two cells
+        let transaction = transactions[indexPath.row]
+        
+        // Format amount
+        let formattedAmount = numberFormat(number: Int(transaction.amount))
+        
+        if transaction.type == .income {
+            cell.labelAmountData.text = "+ \(formattedAmount) Rs"
+            cell.imageTransactionStatus.image = UIImage(named: "money-recieve")
+            cell.imageTransactionStatusBG.image = UIImage(named: "Green Gradient")
+        } else {
+            cell.labelAmountData.text = "- \(formattedAmount) Rs"
+            cell.imageTransactionStatus.image = UIImage(named: "money-send")
+            cell.imageTransactionStatusBG.image = UIImage(named: "Red Gradient")
+        }
+        
+        // Format date properly
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        cell.labelDateData.text = formatter.string(from: transaction.date)
+        
+        // Category icon
+        cell.imageTransactionCategory.image = UIImage(named: transaction.category)
+        
+        // UI styling
         cell.layer.backgroundColor = UIColor.clear.cgColor
-//      setting background imgage radius of the cell such that uniformity is obtained and it looks like a cell
         cell.imageTransactionStatusBG.layer.cornerRadius = 15
+        
         return cell
     }
     
@@ -419,7 +375,7 @@ extension MoneyTrackerVC: UITableViewDataSource, UITableViewDelegate {
     
 //  setting number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionList.count
+        return transactions.count
     }
     
 //  setting cell height through this function
