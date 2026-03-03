@@ -61,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C10379DF2F565C8D00BA9947 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				C13D407C2F5653BB009771D2 /* TransactionRepository.swift */,
+				C13D40772F564E46009771D2 /* MoneyTracker.xcdatamodeld */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		C1C443CC2BB6C95600A3C1DF = {
 			isa = PBXGroup;
 			children = (
@@ -83,7 +92,8 @@
 				C1F227D52E579F80007F74E4 /* Core */,
 				C1F227D72E579F8F007F74E4 /* Storyboard */,
 				C1F227D62E579F8D007F74E4 /* ViewController */,
-				C1F227D82E579F8F007F74E4 /* Data */,
+				C10379DF2F565C8D00BA9947 /* Persistence */,
+				C1F227D82E579F8F007F74E4 /* Domain */,
 				C1F227DA2E579FF1007F74E4 /* Extensions */,
 				C1F227D92E579FDD007F74E4 /* Assets */,
 				C1C443E62BB6C95700A3C1DF /* Info.plist */,
@@ -97,7 +107,6 @@
 				C1C443D82BB6C95600A3C1DF /* AppDelegate.swift */,
 				C1C443DA2BB6C95600A3C1DF /* SceneDelegate.swift */,
 				C13D407A2F565023009771D2 /* CoreDataStack.swift */,
-				C13D40772F564E46009771D2 /* MoneyTracker.xcdatamodeld */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -106,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				C101CAD32BE124FC00EC52A9 /* MoneyTrackerVC.swift */,
+				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -119,14 +129,12 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		C1F227D82E579F8F007F74E4 /* Data */ = {
+		C1F227D82E579F8F007F74E4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				C167E0652BBCB00200065336 /* Transaction.swift */,
-				C13D407C2F5653BB009771D2 /* TransactionRepository.swift */,
-				C101CAD42BE124FC00EC52A9 /* TrackerCell.swift */,
 			);
-			path = Data;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		C1F227D92E579FDD007F74E4 /* Assets */ = {
