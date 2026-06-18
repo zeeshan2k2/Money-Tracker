@@ -14,6 +14,14 @@ It provides a simple way to add, edit, and manage financial records, giving user
 
 ---
 
+## Notes
+<p>
+Detailed learning notes and experiments can be found here:<br>
+<a href="https://secretive-fascinator-c6c.notion.site/Swift-Data-2fbd7fcea352809d89fcf3aef8f72f18?source=copy_link">
+Data Passing in Swift UIKit Notes (Notion)
+</a>
+</p>
+
 ## Screenshots  
 
 <p align="center">
